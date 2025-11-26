@@ -15,6 +15,18 @@ const projectsData = [
   },
 
   {
+    id: "floodSwitch",
+    category: "planned",
+    icon: "fa-solid fa-bolt",
+    title: "floodSwitch",
+    description: {
+      tr: "Açık kaynak, maker dostu ve bütçe dostu DIY Wi-Fi röle.",
+      en: "Open-source, maker-friendly, and cost-effective DIY Wi-Fi relay."
+    },
+    tags: ["esp", "Home Assistant"]
+  },  
+
+  {
     id: "shareyoursets",
     category: "planned",
     icon: "fas fa-share-alt",
@@ -68,3 +80,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const lang = (typeof currentLang !== 'undefined') ? currentLang : 'tr';
   renderProjects(lang);
 });
+
