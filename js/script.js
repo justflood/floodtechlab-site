@@ -167,3 +167,51 @@ if (contactBtn) {
     });
   });
 }
+// Contact Form Handling
+const contactForm = document.getElementById('contact-form');
+const formSuccess = document.getElementById('form-success');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const submitBtn = this.querySelector('.form-submit-btn');
+    const originalBtnText = submitBtn.innerHTML;
+
+    // Change button state
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+
+    const formData = new FormData(this);
+
+    fetch(this.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        // Success
+        contactForm.style.display = 'none';
+        formSuccess.style.display = 'block';
+
+        // Optional: Reset form
+        contactForm.reset();
+      } else {
+        // Error
+        alert("Oops! Bir şeyler ters gitti. Lütfen daha sonra tekrar dene.");
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      }
+    }).catch(error => {
+      // Network Error
+      alert("Oops! Bir şeyler ters gitti. Lütfen daha sonra tekrar dene.");
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+    });
+  });
+}

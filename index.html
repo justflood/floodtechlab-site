@@ -91,6 +91,35 @@
     </div>
   </section>
 
+  <!-- Infinite Tech Scroll -->
+  <div class="tech-scroll-container">
+    <div class="tech-track">
+      <!-- Original Set -->
+      <div class="tech-item"><i class="fab fa-python"></i></div>
+      <div class="tech-item"><i class="fab fa-js"></i></div>
+      <div class="tech-item"><i class="fab fa-html5"></i></div>
+      <div class="tech-item"><i class="fab fa-css3-alt"></i></div>
+      <div class="tech-item"><i class="fab fa-node-js"></i></div>
+      <div class="tech-item"><i class="fab fa-react"></i></div>
+      <div class="tech-item"><i class="fab fa-git-alt"></i></div>
+      <div class="tech-item"><i class="fab fa-raspberry-pi"></i></div>
+      <div class="tech-item"><i class="fas fa-microchip"></i></div> <!-- Arduino/IoT generic -->
+      <div class="tech-item"><i class="fab fa-linux"></i></div>
+
+      <!-- Duplicate Set for Infinite Loop -->
+      <div class="tech-item"><i class="fab fa-python"></i></div>
+      <div class="tech-item"><i class="fab fa-js"></i></div>
+      <div class="tech-item"><i class="fab fa-html5"></i></div>
+      <div class="tech-item"><i class="fab fa-css3-alt"></i></div>
+      <div class="tech-item"><i class="fab fa-node-js"></i></div>
+      <div class="tech-item"><i class="fab fa-react"></i></div>
+      <div class="tech-item"><i class="fab fa-git-alt"></i></div>
+      <div class="tech-item"><i class="fab fa-raspberry-pi"></i></div>
+      <div class="tech-item"><i class="fas fa-microchip"></i></div>
+      <div class="tech-item"><i class="fab fa-linux"></i></div>
+    </div>
+  </div>
+
   <!-- Projects Section -->
   <section id="projects" class="projects" data-aos="fade-up">
     <div class="container">
@@ -118,6 +147,9 @@
       </div>
     </div>
   </section>
+  </div>
+  </div>
+  </section>
 
   <!-- Contact Section -->
   <section id="contact" class="contact" data-aos="fade-up">
@@ -125,9 +157,31 @@
       <h2 class="section-title" data-lang="contact_title">İletişim</h2>
       <div class="contact-content">
         <p data-lang="contact_text">Projelerim hakkında konuşmak veya iş birliği yapmak için bana ulaşın.</p>
-        <a href="mailto:floodtechlab@gmail.com" class="contact-btn">
-          <i class="fas fa-envelope"></i> <span data-lang="contact_btn">Mail Gönder</span>
-        </a>
+
+        <!-- Contact Form -->
+        <form id="contact-form" action="https://formspree.io/f/mrbwqplg" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Ad Soyad" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="E-posta Adresi" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" rows="5" placeholder="Mesajınız..." required></textarea>
+          </div>
+          <button type="submit" class="contact-btn form-submit-btn">
+            <i class="fas fa-paper-plane"></i> <span data-lang="contact_btn">Gönder</span>
+          </button>
+        </form>
+
+        <!-- Success Message (Hidden by default) -->
+        <div id="form-success" style="display: none;">
+          <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <p>Mesajın Furkan'ın terminaline ulaştı! 🚀</p>
+          </div>
+        </div>
+
         <div class="social-links">
           <a href="https://github.com/justflood" target="_blank"><i class="fab fa-github"></i></a>
           <a href="https://x.com/floodtechlab" target="_blank"><i class="fab fa-twitter"></i></a>
