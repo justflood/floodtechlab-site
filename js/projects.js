@@ -11,7 +11,7 @@ const projectsData = [
       tr: "Discord Bot - Oyuncuların istatistiklerini paylaşan bot.",
       en: "Discord Bot - A bot sharing gamers' game stats."
     },
-    tags: ["Node.js", "Discord.js"]
+    tags: ["Node.js", "Discord.js"],
   },
 
   {
@@ -24,7 +24,7 @@ const projectsData = [
       en: "Open-source, maker-friendly, and cost-effective DIY Wi-Fi relay."
     },
     tags: ["esp", "Home Assistant"]
-  },  
+  },
 
   {
     id: "shareyoursets",
@@ -36,13 +36,26 @@ const projectsData = [
       en: "Social platform - A platform where gamers share their setups and game settings."
     },
     tags: ["React", "Firebase"]
+  },
+
+  {
+    id: "smart-file-organizer",
+    category: "completed",
+    icon: "fa-solid fa-folder-open",
+    title: "Smart File Organizer",
+    description: {
+      tr: "Dosya yönetim arayüzü - Dosyalarınızı otomatik olarak organize eden arayüz.",
+      en: "File management interface - An interface that automatically organizes your files."
+    },
+    tags: ["Python", "CustomTkinter"],
+    url: "https://github.com/justflood/smart-file-organizer"
   }
 ];
 
 // Render Function
 function renderProjects(lang) {
   // Clear existing content
-  const categories = ['ongoing', 'planned', 'completed'];
+  const categories = ['ongoing', 'planned', 'completed',];
   categories.forEach(cat => {
     const grid = document.getElementById(`grid-${cat}`);
     if (grid) grid.innerHTML = '';
@@ -53,8 +66,18 @@ function renderProjects(lang) {
     const grid = document.getElementById(`grid-${project.category}`);
     if (!grid) return;
 
-    const card = document.createElement('div');
+    // Use 'a' tag if url exists, otherwise 'div'
+    const card = document.createElement(project.url ? 'a' : 'div');
     card.className = `project-card ${project.category}`;
+
+    if (project.url) {
+      card.href = project.url;
+      card.target = "_blank"; // Open in new tab
+      card.rel = "noopener noreferrer"; // Security best practice
+      card.style.display = "block"; // Ensure it behaves like a block
+      card.style.textDecoration = "none"; // Remove underline
+      card.style.color = "inherit"; // Keep text color
+    }
 
     // Create tags HTML
     const tagsHtml = project.tags.map(tag => `<span>${tag}</span>`).join('');
