@@ -4,7 +4,7 @@
 const projectsData = [
   {
     id: "lurker-jett",
-    category: "ongoing", // Seçenekler: 'ongoing', 'planned', 'completed'
+    category: "planned", // Seçenekler: 'ongoing', 'planned', 'completed'
     icon: "fas fa-robot",
     title: "Vexorex",
     description: {
@@ -28,7 +28,7 @@ const projectsData = [
 
   {
     id: "shareyoursets",
-    category: "planned",
+    category: "ongoing",
     icon: "fas fa-share-alt",
     title: "ShareYourSets",
     description: {
