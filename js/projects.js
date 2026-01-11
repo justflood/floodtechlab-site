@@ -49,6 +49,19 @@ const projectsData = [
     },
     tags: ["Python", "CustomTkinter"],
     url: "https://github.com/justflood/smart-file-organizer"
+  },
+
+  {
+    id: "flood-tuber",
+    category: "completed",
+    icon: "fa-solid fa-microphone",
+    title: "Flood Tuber | PNGtuber Native OBS Plugin",
+    description: {
+      tr: "PNGtuber Native OBS Plugin - OBS Studio için PNGtuber eklentisi.",
+      en: "PNGtuber Native OBS Plugin - OBS Studio for PNGtuber."
+    },
+    tags: ["c++", "OBS", "PNGtuber"],
+    url: "https://github.com/justflood/flood-tuber/releases"
   }
 ];
 
