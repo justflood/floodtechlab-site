@@ -37,7 +37,7 @@ const langData = {
 };
 
 // Current Language State
-let currentLang = 'tr';
+let currentLang = 'en';
 let typed; // Typed.js instance
 
 // DOM Elements
@@ -178,8 +178,8 @@ initTyped(langData[currentLang].hero_subtitle);
 
 // Language Switch Function
 function toggleLanguage() {
-    currentLang = currentLang === 'tr' ? 'en' : 'tr';
-    langSwitchBtn.textContent = currentLang === 'tr' ? 'EN' : 'TR';
+    currentLang = currentLang === 'en' ? 'tr' : 'en';
+    langSwitchBtn.textContent = currentLang === 'en' ? 'TR' : 'EN';
 
     langElements.forEach(el => {
         const key = el.getAttribute('data-lang');

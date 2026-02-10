@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flood Tuber - Premium PNGTuber Plugin for OBS</title>
+  <title>Flood Tuber - Native PNGTuber Plugin for OBS Studio</title>
   <meta name="description"
-    content="Flood Tuber - The ultimate native PNGTuber plugin for OBS Studio. High performance, easy to use, and completely free.">
+    content="Flood Tuber - A native PNGTuber plugin for OBS Studio. High performance, easy to use, completely free and open source.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap"
     rel="stylesheet">
 
   <!-- Icons -->
@@ -27,29 +27,137 @@
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="../css/style.css">
-
   <style>
-    /* Flood Tuber Specific Styles */
-    body {
-      background-color: #0f0f0f;
-      /* Match main site */
+    :root {
+      --bg-primary: #050508;
+      --bg-secondary: #0a0a10;
+      --bg-card: #0f0f18;
+      --bg-card-hover: #14142a;
+      --accent: #00A8FF;
+      --accent-glow: rgba(0, 168, 255, 0.4);
+      --accent-subtle: rgba(0, 168, 255, 0.08);
+      --text-primary: #f0f0f5;
+      --text-secondary: #8888a0;
+      --text-muted: #555570;
+      --border: rgba(255, 255, 255, 0.06);
+      --font-main: 'Inter', sans-serif;
+      --font-header: 'Orbitron', sans-serif;
+      --success: #22c55e;
+      --warning: #f59e0b;
     }
 
-    .flood-hero {
-      height: 90vh;
-      /* Slightly shorter than main hero */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 5, 8, 0.9);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .logo img {
+      height: 28px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-header);
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(0, 168, 255, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(0, 100, 200, 0.04) 0%, transparent 50%),
+        var(--bg-primary);
       overflow: hidden;
-      border-bottom: 1px solid rgba(0, 168, 255, 0.1);
+      padding: 80px 0 60px;
     }
 
-    .flood-hero::before {
+    .hero::before {
       content: '';
       position: absolute;
       top: 0;
@@ -57,148 +165,546 @@
       right: 0;
       bottom: 0;
       background:
-        linear-gradient(rgba(0, 168, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 168, 255, 0.05) 1px, transparent 1px);
-      background-size: 30px 30px;
+        linear-gradient(rgba(0, 168, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 168, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
       pointer-events: none;
-      z-index: 1;
     }
 
-    .content-wrapper {
+    .hero-inner {
       position: relative;
       z-index: 2;
-      text-align: center;
-      max-width: 800px;
-      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .flood-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 5rem;
-      color: #fff;
-      margin-bottom: 10px;
-      text-shadow: 0 0 20px rgba(0, 168, 255, 0.8);
-      letter-spacing: 2px;
+    .hero-text {
+      flex: 1;
     }
 
-    .flood-subtitle {
-      font-size: 1.5rem;
-      color: #aaa;
-      margin-bottom: 30px;
-      font-weight: 300;
+    .hero-mascot {
+      flex-shrink: 0;
+      position: relative;
     }
 
-    .stats-container {
+    .hero-mascot img {
+      width: 350px;
+      height: auto;
+      filter: drop-shadow(0 0 50px rgba(0, 168, 255, 0.3));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 15px;
-      background: rgba(0, 168, 255, 0.1);
-      padding: 10px 25px;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--accent-subtle);
+      border: 1px solid rgba(0, 168, 255, 0.2);
       border-radius: 50px;
-      border: 1px solid rgba(0, 168, 255, 0.3);
-      margin-bottom: 40px;
-      backdrop-filter: blur(5px);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-weight: 500;
     }
 
-    .stats-number {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      color: var(--accent-color);
-      font-weight: 700;
+    .hero-title {
+      font-family: var(--font-header);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      text-shadow: 0 0 30px rgba(0, 168, 255, 0.3);
     }
 
-    .download-btn {
-      font-size: 1.2rem;
-      padding: 15px 50px;
-      background: linear-gradient(45deg, var(--accent-color), #0077b6);
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    /* Download Buttons */
+    .download-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
       border: none;
-      box-shadow: 0 0 30px rgba(0, 168, 255, 0.5);
+      cursor: pointer;
     }
 
-    .download-btn:hover {
-      box-shadow: 0 0 50px rgba(0, 168, 255, 0.8);
-      transform: scale(1.05) translateY(-2px);
+    .dl-btn-primary {
+      background: linear-gradient(135deg, var(--accent), #0077b6);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--accent-glow);
     }
 
-    /* Features Grid */
-    .features {
+    .dl-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .dl-btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .dl-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .dl-btn i {
+      font-size: 1.1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta .stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta .stat i {
+      color: var(--accent);
+    }
+
+    .stat-number {
+      font-family: var(--font-header);
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ============ SECTION COMMON ============ */
+    section {
       padding: 100px 0;
-      background: #111;
+    }
+
+    .section-label {
+      font-family: var(--font-header);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-header);
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 50px;
+    }
+
+    .section-center {
+      text-align: center;
+    }
+
+    .section-center .section-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ============ FEATURES ============ */
+    .features {
+      background: var(--bg-secondary);
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
 
     .feature-card {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 40px;
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: var(--bg-card);
+      padding: 36px 28px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
       transition: all 0.3s ease;
-      text-align: center;
     }
 
     .feature-card:hover {
-      transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--accent-color);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transform: translateY(-6px);
+      border-color: rgba(0, 168, 255, 0.2);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
     .feature-icon {
-      font-size: 3rem;
-      color: var(--accent-color);
+      width: 48px;
+      height: 48px;
+      background: var(--accent-subtle);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--accent);
       margin-bottom: 20px;
     }
 
-    .feature-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
       color: #fff;
-      margin-bottom: 15px;
     }
 
-    .feature-text {
-      color: #aaa;
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
       line-height: 1.6;
     }
 
-    /* Developer Section */
-    .developer {
-      padding: 80px 0;
+    /* ============ HOW TO USE ============ */
+    .howto {
+      background: var(--bg-primary);
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 28px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .step:hover {
+      border-color: rgba(0, 168, 255, 0.2);
+    }
+
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent), #0077b6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .step-content {
+      text-align: left;
+    }
+
+    .step-content h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .step-content code {
+      background: rgba(0, 168, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    .step-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .step-tab {
+      padding: 8px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .step-tab.active {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .step-tab:hover {
+      border-color: var(--accent);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* ============ TRUST / VIRUSTOTAL ============ */
+    .trust {
+      background: var(--bg-secondary);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .trust-card {
+      background: var(--bg-card);
+      padding: 32px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
       text-align: center;
-      background: #0f0f0f;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .trust-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .trust-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .trust-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .trust-score {
+      font-family: var(--font-header);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--success);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .trust-score-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .vt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 6px 14px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--success);
+      transition: all 0.3s;
+    }
+
+    .vt-link:hover {
+      background: rgba(34, 197, 94, 0.2);
+    }
+
+    /* ============ DEVELOPER ============ */
+    .developer {
+      background: var(--bg-primary);
+    }
+
+    .dev-card {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 36px;
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border);
     }
 
     .dev-avatar {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: #222;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      border: 2px solid var(--accent-color);
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(0, 168, 255, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid rgba(0, 168, 255, 0.3);
     }
 
-    /* Responsive */
+    .dev-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dev-info h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .dev-info p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .dev-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .dev-links a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .dev-links a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 900px) {
+
+      .features-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
-      .flood-title {
-        font-size: 3rem;
+      .hero-inner {
+        flex-direction: column-reverse;
+        text-align: center;
       }
 
-      .flood-hero {
-        height: auto;
-        padding: 100px 0;
+      .hero-mascot img {
+        width: 240px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-desc {
+        margin: 0 auto 30px;
+      }
+
+      .download-group {
+        justify-content: center;
+      }
+
+      .hero-meta {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .dev-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .dev-links {
+        justify-content: center;
       }
     }
   </style>
@@ -209,127 +715,281 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container nav-container">
-      <div class="logo">
+      <a href="../index.html" class="logo">
         <img src="../assets/logo.png" alt="FloodTechLab Logo">
         <span>FloodTechLab</span>
-      </div>
+      </a>
       <div class="nav-links">
-        <a href="../index.html">Ana Sayfa</a>
-        <a href="../index.html#projects">Diğer Projeler</a>
+        <a href="../index.html" data-lang="nav_home">Home</a>
+        <a href="#features" data-lang="nav_features">Features</a>
+        <a href="#howto" data-lang="nav_install">Installation</a>
         <a href="https://github.com/justflood/flood-tuber" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <button id="lang-switch" class="lang-btn">TR</button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="flood-hero">
-    <div class="content-wrapper">
-      <h1 class="flood-title" data-aos="zoom-in">FLOOD TUBER</h1>
-      <p class="flood-subtitle" data-aos="fade-up" data-aos-delay="100">Native PNGTuber Plugin for OBS Studio</p>
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge" data-aos="fade-down">
+          <i class="fas fa-plug"></i>
+          <span data-lang="hero_badge">OBS Studio Native Plugin</span>
+        </div>
+        <h1 class="hero-title" data-aos="fade-up">
+          FLOOD<span>TUBER</span>
+        </h1>
+        <p class="hero-desc" data-aos="fade-up" data-aos-delay="100" data-lang="hero_desc">
+          A native PNGTuber plugin that integrates directly into OBS Studio — no external apps needed.
+          Bring your streams to life with voice-reactive avatars.
+        </p>
 
-      <div class="stats-container" data-aos="fade-up" data-aos-delay="200">
-        <i class="fas fa-download"></i>
-        <span>Toplam İndirme:</span>
-        <span id="download-count" class="stats-number">Yükleniyor...</span>
+        <div class="download-group" data-aos="fade-up" data-aos-delay="200">
+          <a href="https://github.com/justflood/flood-tuber/releases/download/v0.2.0/FloodTuber-Installer-0.2.0.exe"
+            class="dl-btn dl-btn-primary">
+            <i class="fas fa-download"></i>
+            <span data-lang="dl_installer">Download Installer</span>
+          </a>
+          <a href="https://github.com/justflood/flood-tuber/releases/download/v0.2.0/FloodTuber-Portable-v0.2.0.zip"
+            class="dl-btn dl-btn-secondary">
+            <i class="fas fa-file-zipper"></i>
+            <span data-lang="dl_portable">Download Portable</span>
+          </a>
+        </div>
+
+        <div class="hero-meta" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat">
+            <i class="fas fa-download"></i>
+            <span id="download-count" class="stat-number">—</span>
+            <span data-lang="hero_downloads">downloads</span>
+          </div>
+          <div class="stat">
+            <i class="fas fa-code-branch"></i>
+            <span>v0.2.0</span>
+          </div>
+          <div class="stat">
+            <i class="fab fa-windows"></i>
+            <span>Windows x64</span>
+          </div>
+        </div>
       </div>
 
-      <div data-aos="fade-up" data-aos-delay="300">
-        <a href="https://github.com/justflood/flood-tuber/releases/latest" target="_blank" class="cta-btn download-btn">
-          <i class="fas fa-rocket"></i> HEMEN İNDİR
-        </a>
+      <div class="hero-mascot" data-aos="zoom-in" data-aos-delay="200">
+        <img src="mascot.png" alt="Flood Tuber Mascot">
       </div>
-
-      <p style="margin-top: 20px; color: #666; font-size: 0.9rem;" data-aos="fade-in" data-aos-delay="400">
-        v0.2 - Beta • Windows x64 • Free & Open Source
-      </p>
     </div>
   </section>
 
-  <!-- About / What Is It -->
-  <section class="features">
-    <div class="container">
-      <div class="section-title" data-aos="fade-up">Flood Tuber Nedir?</div>
-      <p style="text-align: center; max-width: 700px; margin: 0 auto 60px; color: #ccc; font-size: 1.1rem;"
-        data-aos="fade-up">
-        Flood Tuber, OBS Studio için özel olarak geliştirilmiş, harici bir program gerektirmeyen (native) bir PNGTuber
-        eklentisidir. Kaynak tüketimi minimumdur ve doğrudan OBS içinden yönetilir. Karmaşık kurulumlara son!
+  <!-- ====== FEATURES ====== -->
+  <section id="features" class="features">
+    <div class="container section-center">
+      <p class="section-label" data-aos="fade-up" data-lang="feat_label">Features</p>
+      <h2 class="section-title" data-aos="fade-up" data-lang="feat_title">Why Flood Tuber?</h2>
+      <p class="section-desc" data-aos="fade-up" data-lang="feat_desc">
+        Unlike other PNGTuber solutions, Flood Tuber runs natively inside OBS.
+        No extra windows, no extra programs required.
       </p>
 
       <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+          <h3 data-lang="feat1_title">Native Performance</h3>
+          <p data-lang="feat1_desc">Written in C++, uses OBS's own plugin API. CPU usage is virtually zero.</p>
+        </div>
         <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-bolt feature-icon"></i>
-          <h3 class="feature-title">Native Performans</h3>
-          <p class="feature-text">Harici bir .exe çalıştırmanıza gerek yok. Doğrudan OBS'in içinde C++ ile çalışır, CPU
-            dostudur.</p>
+          <div class="feature-icon"><i class="fas fa-microphone-lines"></i></div>
+          <h3 data-lang="feat2_title">Voice-Reactive Animation</h3>
+          <p data-lang="feat2_desc">Reacts to your microphone input. 3-frame talking animation (Talk A, B, C) for a
+            natural look.</p>
         </div>
-
         <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-          <i class="fas fa-microphone-lines feature-icon"></i>
-          <h3 class="feature-title">Ses Duyarlı</h3>
-          <p class="feature-text">Mikrofon girişinize otomatik tepki verir. Konuştuğunuzda karakteriniz canlanır!</p>
+          <div class="feature-icon"><i class="fas fa-images"></i></div>
+          <h3 data-lang="feat3_title">Avatar Library</h3>
+          <p data-lang="feat3_desc">Built-in library system lets you switch between different avatars with a single
+            click.</p>
         </div>
-
-        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-          <i class="fas fa-layer-group feature-icon"></i>
-          <h3 class="feature-title">Kolay Kurulum</h3>
-          <p class="feature-text">İndirin, OBS plugins klasörüne atın ve kaynak olarak sahnenize ekleyin. Bu kadar
-            basit.</p>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="feature-icon"><i class="fas fa-eye"></i></div>
+          <h3 data-lang="feat4_title">Auto-Blink</h3>
+          <p data-lang="feat4_desc">Adds life to your avatar with configurable automatic blinking intervals.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How to Use -->
-  <section class="projects" style="background: #0a0a0a;"> <!-- Reusing projects class for dark bg -->
-    <div class="container">
-      <h2 class="section-title" data-aos="fade-up">Nasıl Kullanılır?</h2>
-
-      <div style="display: flex; flex-direction: column; gap: 30px; max-width: 800px; margin: 0 auto;">
-        <div class="project-card" data-aos="fade-right">
-          <div class="card-header">
-            <span
-              style="background: var(--accent-color); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</span>
-            <h4>İndir</h4>
-          </div>
-          <p>GitHub Releases sayfasından en son sürümü (zip) indirin.</p>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon"><i class="fas fa-shuffle"></i></div>
+          <h3 data-lang="feat5_title">Random Actions</h3>
+          <p data-lang="feat5_desc">Plays random animations (emotes, special poses) at set intervals for extra
+            personality.</p>
         </div>
-
-        <div class="project-card" data-aos="fade-left">
-          <div class="card-header">
-            <span
-              style="background: var(--accent-color); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</span>
-            <h4>Yükle</h4>
-          </div>
-          <p>Zip içindeki dosyaları OBS Studio kurulu olduğu dizine (genellikle
-            <code>C:\Program Files\obs-studio</code>) yapıştırın.
-          </p>
-        </div>
-
-        <div class="project-card" data-aos="fade-right">
-          <div class="card-header">
-            <span
-              style="background: var(--accent-color); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</span>
-            <h4>Ekle</h4>
-          </div>
-          <p>OBS'i açın, Kaynaklar (Sources) paneline sağ tıklayın ve "Flood Tuber" kaynağını seçin.</p>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon"><i class="fas fa-arrows-left-right"></i></div>
+          <h3 data-lang="feat6_title">Motion Effects & Mirror</h3>
+          <p data-lang="feat6_desc">Choose Shake, Bounce, or None motion modes. Flip your avatar horizontally with one
+            checkbox.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Developer -->
+  <!-- ====== HOW TO USE ====== -->
+  <section id="howto" class="howto">
+    <div class="container section-center">
+      <p class="section-label" data-aos="fade-up" data-lang="howto_label">Installation</p>
+      <h2 class="section-title" data-aos="fade-up" data-lang="howto_title">How to Install & Use</h2>
+      <p class="section-desc" data-aos="fade-up" data-lang="howto_desc">We offer two installation methods. Choose
+        whichever suits you best.</p>
+
+      <!-- Tabs -->
+      <div class="step-tabs" data-aos="fade-up">
+        <div class="step-tab active" onclick="switchTab('installer')">
+          <i class="fas fa-download"></i> <span data-lang="tab_installer">Installer (Easy)</span>
+        </div>
+        <div class="step-tab" onclick="switchTab('portable')">
+          <i class="fas fa-file-zipper"></i> <span data-lang="tab_portable">Portable (Manual)</span>
+        </div>
+      </div>
+
+      <!-- Installer Steps -->
+      <div id="tab-installer" class="tab-content active steps-container">
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4 data-lang="ins1_title">Download the Installer</h4>
+            <p data-lang="ins1_desc">Click the <strong>"Download Installer"</strong> button above. The file
+              <code>FloodTuber-Installer-0.2.0.exe</code> will be downloaded.
+            </p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4 data-lang="ins2_title">Run the Installer</h4>
+            <p data-lang="ins2_desc">Double-click the downloaded file. If Windows SmartScreen appears, click
+              <strong>"More Info"</strong> → <strong>"Run Anyway"</strong>. (This is normal for open-source projects
+              without a signing certificate.)
+            </p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4 data-lang="ins3_title">Open OBS & Add Source</h4>
+            <p data-lang="ins3_desc">Open OBS Studio → Click <strong>"+"</strong> in the Sources panel → Select
+              <strong>"Flood Tuber Avatar"</strong>.
+            </p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4 data-lang="ins4_title">Configure Settings</h4>
+            <p data-lang="ins4_desc">In the properties window, select your microphone source, load a preset from the
+              <strong>Avatar Library</strong>, and adjust the <strong>Threshold</strong> to match your voice level.
+              That's it!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portable Steps -->
+      <div id="tab-portable" class="tab-content steps-container">
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4 data-lang="port1_title">Download the ZIP</h4>
+            <p data-lang="port1_desc">Click the <strong>"Download Portable"</strong> button above and download the ZIP
+              file.</p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4 data-lang="port2_title">Copy the DLL</h4>
+            <p data-lang="port2_desc">Copy <code>flood-tuber.dll</code> to the OBS plugins
+              folder:<br><code>C:\Program Files\obs-studio\obs-plugins\64bit</code></p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4 data-lang="port3_title">Copy the Data Folder</h4>
+            <p data-lang="port3_desc">Copy the <code>data/obs-plugins/flood-tuber</code> folder from the ZIP
+              to:<br><code>C:\Program Files\obs-studio\data\obs-plugins\flood-tuber</code></p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4 data-lang="port4_title">Restart OBS</h4>
+            <p data-lang="port4_desc">Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear
+              in the Sources panel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TRUST / VIRUSTOTAL ====== -->
+  <section class="trust">
+    <div class="container section-center">
+      <p class="section-label" data-aos="fade-up" data-lang="trust_label">Security</p>
+      <h2 class="section-title" data-aos="fade-up" data-lang="trust_title">Safe & Open Source</h2>
+      <p class="section-desc" data-aos="fade-up" data-lang="trust_desc">
+        Flood Tuber is fully open source. You can review the source code and build it yourself.
+      </p>
+
+      <div class="trust-grid">
+        <div class="trust-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="trust-icon">🛡️</div>
+          <span class="trust-score">67/70</span>
+          <span class="trust-score-label" data-lang="trust_vt_label">Antivirus Engines Clean</span>
+          <h3 data-lang="trust_vt_title">VirusTotal Scan</h3>
+          <p data-lang="trust_vt_desc">67 out of 70 antivirus engines confirmed the file as completely safe.</p>
+          <a href="https://www.virustotal.com/gui/file/115d36e72f3ca39cb7566e76e3f767ada6b5057e413685c1cfd33d0692ab2edf"
+            target="_blank" class="vt-link">
+            <i class="fas fa-external-link-alt"></i> <span data-lang="trust_vt_link">View Results</span>
+          </a>
+        </div>
+        <div class="trust-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="trust-icon">📖</div>
+          <h3 data-lang="trust_os_title">Fully Open Source</h3>
+          <p data-lang="trust_os_desc">All source code is publicly available on GitHub. Licensed under GPLv2. Inspect it
+            anytime.</p>
+          <a href="https://github.com/justflood/flood-tuber" target="_blank" class="vt-link"
+            style="border-color: rgba(0, 168, 255, 0.2); background: rgba(0, 168, 255, 0.1); color: var(--accent);">
+            <i class="fab fa-github"></i> <span data-lang="trust_os_link">View Source Code</span>
+          </a>
+        </div>
+        <div class="trust-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="trust-icon">⚠️</div>
+          <h3 data-lang="trust_ss_title">SmartScreen Warning?</h3>
+          <p data-lang="trust_ss_desc">Windows warns about unsigned .exe files. This is not a virus — it simply means
+            the developer doesn't have an expensive signing certificate. Click "More Info" → "Run Anyway" to install
+            safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DEVELOPER ====== -->
   <section class="developer">
-    <div class="container">
-      <div class="dev-avatar">
-        <i class="fas fa-user-astronaut"></i>
-      </div>
-      <h3 style="color: white; font-family: 'Orbitron'; margin-bottom: 5px;">Geliştirici</h3>
-      <h2 style="color: var(--accent-color); font-size: 2rem; margin-bottom: 20px;">Furkan SEL</h2>
-      <p style="color: #888;">FloodTechLab Kurucusu & Yazılım Geliştirici</p>
+    <div class="container section-center">
+      <p class="section-label" data-aos="fade-up" data-lang="dev_label">Developer</p>
+      <h2 class="section-title" data-aos="fade-up" data-lang="dev_title">Who's Behind This?</h2>
 
-      <div class="social-links" style="margin-top: 30px;">
-        <a href="https://github.com/justflood" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://x.com/justflooddev" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+      <div class="dev-card" data-aos="fade-up">
+        <div class="dev-avatar">
+          <img src="dev-logo.jpg" alt="justflood">
+        </div>
+        <div class="dev-info">
+          <h3>justflood</h3>
+          <p data-lang="dev_role">FloodTechLab Founder & Aspiring Computer Engineer</p>
+          <div class="dev-links">
+            <a href="https://github.com/justflood" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://x.com/justflooddev" target="_blank" title="X"><i class="fab fa-twitter"></i></a>
+            <a href="https://obsproject.com/forum/resources/flood-tuber-native-pngtuber-plugin.2336/" target="_blank"
+              title="OBS Forum"><i class="fas fa-plug"></i></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -344,10 +1004,161 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 800, once: true });
+
+    // ===== LANGUAGE SYSTEM =====
+    const langData = {
+      en: {
+        nav_home: "Home",
+        nav_features: "Features",
+        nav_install: "Installation",
+        hero_badge: "OBS Studio Native Plugin",
+        hero_desc: "A native PNGTuber plugin that integrates directly into OBS Studio — no external apps needed. Bring your streams to life with voice-reactive avatars.",
+        dl_installer: "Download Installer",
+        dl_portable: "Download Portable",
+        hero_downloads: "downloads",
+        feat_label: "Features",
+        feat_title: "Why Flood Tuber?",
+        feat_desc: "Unlike other PNGTuber solutions, Flood Tuber runs natively inside OBS. No extra windows, no extra programs required.",
+        feat1_title: "Native Performance",
+        feat1_desc: "Written in C++, uses OBS's own plugin API. CPU usage is virtually zero.",
+        feat2_title: "Voice-Reactive Animation",
+        feat2_desc: "Reacts to your microphone input. 3-frame talking animation (Talk A, B, C) for a natural look.",
+        feat3_title: "Avatar Library",
+        feat3_desc: "Built-in library system lets you switch between different avatars with a single click.",
+        feat4_title: "Auto-Blink",
+        feat4_desc: "Adds life to your avatar with configurable automatic blinking intervals.",
+        feat5_title: "Random Actions",
+        feat5_desc: "Plays random animations (emotes, special poses) at set intervals for extra personality.",
+        feat6_title: "Motion Effects & Mirror",
+        feat6_desc: "Choose Shake, Bounce, or None motion modes. Flip your avatar horizontally with one checkbox.",
+        howto_label: "Installation",
+        howto_title: "How to Install & Use",
+        howto_desc: "We offer two installation methods. Choose whichever suits you best.",
+        tab_installer: "Installer (Easy)",
+        tab_portable: "Portable (Manual)",
+        ins1_title: "Download the Installer",
+        ins1_desc: 'Click the <strong>"Download Installer"</strong> button above. The file <code>FloodTuber-Installer-0.2.0.exe</code> will be downloaded.',
+        ins2_title: "Run the Installer",
+        ins2_desc: 'Double-click the downloaded file. If Windows SmartScreen appears, click <strong>"More Info"</strong> → <strong>"Run Anyway"</strong>. (This is normal for open-source projects without a signing certificate.)',
+        ins3_title: "Open OBS & Add Source",
+        ins3_desc: 'Open OBS Studio → Click <strong>"+"</strong> in the Sources panel → Select <strong>"Flood Tuber Avatar"</strong>.',
+        ins4_title: "Configure Settings",
+        ins4_desc: 'In the properties window, select your microphone source, load a preset from the <strong>Avatar Library</strong>, and adjust the <strong>Threshold</strong> to match your voice level. That\'s it!',
+        port1_title: "Download the ZIP",
+        port1_desc: 'Click the <strong>"Download Portable"</strong> button above and download the ZIP file.',
+        port2_title: "Copy the DLL",
+        port2_desc: 'Copy <code>flood-tuber.dll</code> to the OBS plugins folder:<br><code>C:\\Program Files\\obs-studio\\obs-plugins\\64bit</code>',
+        port3_title: "Copy the Data Folder",
+        port3_desc: 'Copy the <code>data/obs-plugins/flood-tuber</code> folder from the ZIP to:<br><code>C:\\Program Files\\obs-studio\\data\\obs-plugins\\flood-tuber</code>',
+        port4_title: "Restart OBS",
+        port4_desc: 'Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear in the Sources panel.',
+        trust_label: "Security",
+        trust_title: "Safe & Open Source",
+        trust_desc: "Flood Tuber is fully open source. You can review the source code and build it yourself.",
+        trust_vt_label: "Antivirus Engines Clean",
+        trust_vt_title: "VirusTotal Scan",
+        trust_vt_desc: "67 out of 70 antivirus engines confirmed the file as completely safe.",
+        trust_vt_link: "View Results",
+        trust_os_title: "Fully Open Source",
+        trust_os_desc: "All source code is publicly available on GitHub. Licensed under GPLv2. Inspect it anytime.",
+        trust_os_link: "View Source Code",
+        trust_ss_title: "SmartScreen Warning?",
+        trust_ss_desc: 'Windows warns about unsigned .exe files. This is not a virus — it simply means the developer doesn\'t have an expensive signing certificate. Click "More Info" → "Run Anyway" to install safely.',
+        dev_label: "Developer",
+        dev_title: "Who's Behind This?",
+        dev_role: "FloodTechLab Founder & Aspiring Computer Engineer"
+      },
+      tr: {
+        nav_home: "Ana Sayfa",
+        nav_features: "Özellikler",
+        nav_install: "Kurulum",
+        hero_badge: "OBS Studio Native Eklenti",
+        hero_desc: "OBS Studio'ya doğrudan entegre olan, harici program gerektirmeyen PNGTuber eklentisi. Mikrofon sesinize tepki veren avatarlar ile yayınlarınızı canlandırın.",
+        dl_installer: "Installer İndir",
+        dl_portable: "Portable İndir",
+        hero_downloads: "indirme",
+        feat_label: "Özellikler",
+        feat_title: "Neden Flood Tuber?",
+        feat_desc: "Diğer PNGTuber çözümlerinden farklı olarak, Flood Tuber doğrudan OBS'in içinde çalışır. Ekstra pencere, ekstra program yok.",
+        feat1_title: "Native Performans",
+        feat1_desc: "C++ ile yazılmış, OBS'in kendi plugin API'sini kullanır. CPU kullanımı neredeyse sıfır.",
+        feat2_title: "Ses Duyarlı Animasyon",
+        feat2_desc: "Mikrofon girişinize tepki verir. 3 kademeli konuşma animasyonu (Talk A, B, C) ile doğal görünüm.",
+        feat3_title: "Avatar Kütüphanesi",
+        feat3_desc: "Dahili kütüphane sistemi ile farklı avatarlar arasında tek tıkla geçiş yapın.",
+        feat4_title: "Otomatik Göz Kırpma",
+        feat4_desc: "Ayarlanabilir aralıklarla otomatik göz kırpma efekti ile avatarınıza hayat katın.",
+        feat5_title: "Rastgele Aksiyonlar",
+        feat5_desc: "Belirlediğiniz aralıklarla rastgele animasyonlar (emote, özel poz) oynatır.",
+        feat6_title: "Hareket Efektleri & Ayna",
+        feat6_desc: "Shake, Bounce veya None hareket modları. Tek tuşla avatarı yatay aynalayın.",
+        howto_label: "Kurulum",
+        howto_title: "Nasıl Kurulur & Kullanılır?",
+        howto_desc: "İki farklı kurulum yöntemi sunuyoruz. Kendinize uygun olanı seçin.",
+        tab_installer: "Installer (Kolay)",
+        tab_portable: "Portable (Manuel)",
+        ins1_title: "Installer'ı İndirin",
+        ins1_desc: 'Yukarıdaki <strong>"Installer İndir"</strong> butonuna tıklayın. <code>FloodTuber-Installer-0.2.0.exe</code> dosyası inecektir.',
+        ins2_title: "Installer'ı Çalıştırın",
+        ins2_desc: 'İndirilen dosyaya çift tıklayın. Windows SmartScreen uyarısı çıkarsa: <strong>"More Info"</strong> → <strong>"Run Anyway"</strong> seçin. (Açık kaynak projelerde imza sertifikası olmadığı için bu normaldir.)',
+        ins3_title: "OBS'i Açın & Kaynağı Ekleyin",
+        ins3_desc: 'OBS Studio\'yu açın → Kaynaklar paneline <strong>"+"</strong> butonuna basın → <strong>"Flood Tuber Avatar"</strong> kaynağını seçin.',
+        ins4_title: "Ayarları Yapın",
+        ins4_desc: 'Açılan pencerede mikrofon kaynağınızı seçin, <strong>Avatar Library</strong>\'den bir preset yükleyin ve <strong>Threshold</strong> değerini ses seviyenize göre ayarlayın. Hepsi bu kadar!',
+        port1_title: "ZIP Dosyasını İndirin",
+        port1_desc: 'Yukarıdaki <strong>"Portable İndir"</strong> butonuna tıklayın ve ZIP dosyasını indirin.',
+        port2_title: "DLL Dosyasını Kopyalayın",
+        port2_desc: '<code>flood-tuber.dll</code> dosyasını OBS plugins klasörüne yapıştırın:<br><code>C:\\Program Files\\obs-studio\\obs-plugins\\64bit</code>',
+        port3_title: "Data Klasörünü Kopyalayın",
+        port3_desc: 'ZIP içindeki <code>data/obs-plugins/flood-tuber</code> klasörünü şuraya yapıştırın:<br><code>C:\\Program Files\\obs-studio\\data\\obs-plugins\\flood-tuber</code>',
+        port4_title: "OBS'i Yeniden Başlatın",
+        port4_desc: 'OBS\'i kapatıp tekrar açın. Kaynaklar panelinde <strong>"Flood Tuber Avatar"</strong> artık görünecektir.',
+        trust_label: "Güvenlik",
+        trust_title: "Güvenli & Açık Kaynak",
+        trust_desc: "Flood Tuber tamamen açık kaynak kodludur. Kaynak kodunu inceleyebilir, kendiniz derleyebilirsiniz.",
+        trust_vt_label: "Antivirüs Motoru Temiz",
+        trust_vt_title: "VirusTotal Taraması",
+        trust_vt_desc: "70 farklı antivirüs motorundan 67'si dosyayı tamamen temiz olarak onaylamıştır.",
+        trust_vt_link: "Sonuçları Gör",
+        trust_os_title: "Tamamen Açık Kaynak",
+        trust_os_desc: "Tüm kaynak kodu GitHub'da herkese açık. GPLv2 lisansı ile dağıtılır. İstediğiniz gibi inceleyin.",
+        trust_os_link: "Kaynak Kodunu Gör",
+        trust_ss_title: "SmartScreen Uyarısı?",
+        trust_ss_desc: 'Windows imzasız .exe dosyalarında uyarı verir. Bu bir virüs değil, pahalı bir sertifikanın olmamasıdır. "More Info" → "Run Anyway" ile güvenle kurabilirsiniz.',
+        dev_label: "Geliştirici",
+        dev_title: "Kim Geliştiriyor?",
+        dev_role: "FloodTechLab Kurucusu & Bilgisayar Mühendisi Adayı"
+      }
+    };
+
+    let currentLang = 'en';
+    const langSwitchBtn = document.getElementById('lang-switch');
+    const langElements = document.querySelectorAll('[data-lang]');
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'tr' : 'en';
+      langSwitchBtn.textContent = currentLang === 'en' ? 'TR' : 'EN';
+
+      langElements.forEach(el => {
+        const key = el.getAttribute('data-lang');
+        if (langData[currentLang][key]) {
+          el.innerHTML = langData[currentLang][key];
+        }
+      });
+    }
+
+    if (langSwitchBtn) {
+      langSwitchBtn.addEventListener('click', toggleLanguage);
+    }
+
+    // Tab switching for installation steps
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.step-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
 
     // Download Stats from stats.json (updated by GitHub Actions every 30 min)
     async function fetchDownloadStats() {
