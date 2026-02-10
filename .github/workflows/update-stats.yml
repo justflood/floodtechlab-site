@@ -23,9 +23,10 @@ jobs:
             -H "User-Agent: Mozilla/5.0 (compatible; FloodTechLab-Stats/1.0)" \
             "https://obsproject.com/forum/resources/flood-tuber-native-pngtuber-plugin.2336/")
 
-          # Parse "Total downloads" from XenForo HTML structure:
-          # <dt>Total downloads</dt> <dd>1,234</dd>
-          COUNT=$(echo "$HTML" | grep -oP 'Total downloads</dt>\s*<dd[^>]*>\K[\d,]+' | tr -d ',')
+          # Parse "Downloads" from XenForo HTML structure:
+          # <dt>Downloads</dt>
+          # <dd>906</dd>
+          COUNT=$(echo "$HTML" | grep -A1 '<dt>Downloads</dt>' | grep '<dd>' | grep -oP '\d[\d,]*' | tr -d ',')
 
           # Validate: must be a number > 0
           if [[ -z "$COUNT" || "$COUNT" -le 0 ]]; then
