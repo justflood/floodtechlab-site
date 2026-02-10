@@ -1,0 +1,70 @@
+name: Update Download Stats
+
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch OBS Forum download count
+        run: |
+          # Fetch the OBS forum page
+          HTML=$(curl -s -L --max-time 30 \
+            -H "User-Agent: Mozilla/5.0 (compatible; FloodTechLab-Stats/1.0)" \
+            "https://obsproject.com/forum/resources/flood-tuber-native-pngtuber-plugin.2336/")
+
+          # Parse "Total downloads" from XenForo HTML structure:
+          # <dt>Total downloads</dt> <dd>1,234</dd>
+          COUNT=$(echo "$HTML" | grep -oP 'Total downloads</dt>\s*<dd[^>]*>\K[\d,]+' | tr -d ',')
+
+          # Validate: must be a number > 0
+          if [[ -z "$COUNT" || "$COUNT" -le 0 ]]; then
+            echo "ERROR: Could not parse download count. Got: '$COUNT'"
+            echo "Keeping existing stats.json unchanged."
+            exit 0
+          fi
+
+          echo "Parsed download count: $COUNT"
+
+          # Read current value to avoid unnecessary commits
+          CURRENT=$(cat stats.json 2>/dev/null | grep -oP '"obs_forum_downloads":\s*\K\d+' || echo "0")
+          echo "Current stored count: $CURRENT"
+
+          if [ "$COUNT" -eq "$CURRENT" ]; then
+            echo "No change in download count. Skipping commit."
+            exit 0
+          fi
+
+          # Update stats.json
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          cat > stats.json << EOF
+          {
+            "obs_forum_downloads": $COUNT,
+            "last_updated": "$TIMESTAMP"
+          }
+          EOF
+
+          # Fix indentation (remove leading spaces from heredoc)
+          sed -i 's/^          //' stats.json
+
+          echo "Updated stats.json: $COUNT downloads at $TIMESTAMP"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats.json
+          # Only commit if there are staged changes
+          git diff --staged --quiet && echo "Nothing to commit." && exit 0
+          git commit -m "📊 Update download stats [automated]"
+          git push
