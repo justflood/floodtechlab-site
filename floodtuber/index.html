@@ -1213,6 +1213,33 @@
       }, 25);
     }
 
+    async function updateReleaseInfo() {
+      try {
+        const res = await fetch('../stats.json');
+        if (!res.ok) return;
+        const data = await res.json();
+
+        const elements = {
+          'ft-main-version': 'innerText',
+          'dl-installer': 'href',
+          'dl-portable': 'href'
+        };
+
+        for (const [id, prop] of Object.entries(elements)) {
+          const el = document.getElementById(id);
+          if (el) {
+            if (id === 'ft-main-version') el.innerText = data.latest_version;
+            if (id === 'dl-installer') el.href = data.installer_url;
+            if (id === 'dl-portable') el.href = data.portable_url;
+          }
+        }
+        animateCounter(data.obs_forum_downloads);
+      } catch (e) {
+        console.error('Release info update error:', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateReleaseInfo);
   </script>
 </body>
 
