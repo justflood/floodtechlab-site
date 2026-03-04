@@ -9,6 +9,8 @@ const langData = {
     hero_cta: "Projeleri Keşfet",
     about_title: "Hakkımda",
     about_text: "Ben Furkan SEL, bilgisayar mühendisliği 1. sınıf öğrencisiyim. Teknolojiye olan tutkumla, full-stack web geliştirme, gömülü sistemler ve IoT projelerine merak salmış bir geliştirici adayıyım. Kod yazmayı, yeni teknolojileri keşfetmeyi ve problem çözmeyi seviyorum. Öğrenme ve gelişme yolculuğumda, FloodTechLab çatısı altında yaratıcı projeler geliştirmeye odaklanıyorum.",
+    ft_strip_desc: "Sıradan yayınlara veda edin. OBS Studio için sıfırdan geliştirdiğimiz ultra hafif ve native PNGTuber eklentisi ile karakterinizi saniyeler içinde yayına çıkarın!",
+    ft_btn: "Projeyi Keşfet",
     projects_title: "Proje Süreci",
     cat_ongoing: "Devam Eden",
     cat_planned: "Planlanan",
@@ -27,6 +29,8 @@ const langData = {
     hero_cta: "Discover Projects",
     about_title: "About Me",
     about_text: "I am Furkan SEL, a 1st-year Computer Engineering student. Driven by my passion for technology, I am an aspiring developer interested in full-stack web development, embedded systems and IoT projects. I love coding, exploring new technologies, and solving problems. In my learning and development journey, I focus on developing creative projects under the roof of FloodTechLab.",
+    ft_strip_desc: "Say goodbye to ordinary streams. Bring your character to life in seconds with our ultra-lightweight and native PNGTuber plugin built from scratch for OBS Studio!",
+    ft_btn: "Discover Project",
     projects_title: "Project Pipeline",
     cat_ongoing: "Ongoing",
     cat_planned: "Planned",
@@ -215,3 +219,44 @@ if (contactForm) {
     });
   });
 }
+
+/**
+ * Update Flood Tuber release info dynamically from stats.json
+ * Fetches latest version and download links
+ */
+async function updateReleaseInfo() {
+  try {
+    const isSubpage = window.location.pathname.includes('/floodtuber/');
+    const res = await fetch(isSubpage ? '../stats.json' : 'stats.json');
+    if (!res.ok) return;
+    const data = await res.json();
+
+    // Update Elements
+    const elements = {
+      'ft-main-version': 'innerText',
+      'ft-strip-version': 'innerText',
+      'dl-installer': 'href',
+      'dl-portable': 'href'
+    };
+
+    for (const [id, prop] of Object.entries(elements)) {
+      const el = document.getElementById(id);
+      if (el) {
+        if (id === 'ft-main-version' || id === 'ft-strip-version') el.innerText = data.latest_version;
+        if (id === 'dl-installer') el.href = data.installer_url;
+        if (id === 'dl-portable') el.href = data.portable_url;
+      }
+    }
+
+    // Trigger Forum Stats Animation if on subpage and function exists
+    if (isSubpage && typeof animateCounter === 'function') {
+      animateCounter(data.obs_forum_downloads);
+    }
+  } catch (e) {
+    console.error('Release info update error:', e);
+  }
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', updateReleaseInfo);
+
