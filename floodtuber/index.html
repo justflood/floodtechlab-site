@@ -890,7 +890,7 @@
           <div class="step-content">
             <h4 data-lang="ins1_title">Download the Installer</h4>
             <p data-lang="ins1_desc">Click the <strong>"Download Installer"</strong> button above. The file
-              <code>FloodTuber-Installer-0.2.0.exe</code> will be downloaded.
+              <code>FloodTuber-Installer-<span class="ft-ins-version">0.2.0</span>.exe</code> will be downloaded.
             </p>
           </div>
         </div>
@@ -1073,7 +1073,7 @@
         tab_installer: "Installer (Easy)",
         tab_portable: "Portable (Manual)",
         ins1_title: "Download the Installer",
-        ins1_desc: 'Click the <strong>"Download Installer"</strong> button above. The file <code>FloodTuber-Installer-0.2.0.exe</code> will be downloaded.',
+        ins1_desc: 'Click the <strong>"Download Installer"</strong> button above. The file <code>FloodTuber-Installer-<span class="ft-ins-version">0.2.0</span>.exe</code> will be downloaded.',
         ins2_title: "Run the Installer",
         ins2_desc: 'Double-click the downloaded file. If Windows SmartScreen appears, click <strong>"More Info"</strong> → <strong>"Run Anyway"</strong>. (This is normal for open-source projects without a signing certificate.)',
         ins3_title: "Open OBS & Add Source",
@@ -1134,7 +1134,7 @@
         tab_installer: "Installer (Kolay)",
         tab_portable: "Portable (Manuel)",
         ins1_title: "Installer'ı İndirin",
-        ins1_desc: 'Yukarıdaki <strong>"Installer İndir"</strong> butonuna tıklayın. <code>FloodTuber-Installer-0.2.0.exe</code> dosyası inecektir.',
+        ins1_desc: 'Yukarıdaki <strong>"Installer İndir"</strong> butonuna tıklayın. <code>FloodTuber-Installer-<span class="ft-ins-version">0.2.0</span>.exe</code> dosyası inecektir.',
         ins2_title: "Installer'ı Çalıştırın",
         ins2_desc: 'İndirilen dosyaya çift tıklayın. Windows SmartScreen uyarısı çıkarsa: <strong>"More Info"</strong> → <strong>"Run Anyway"</strong> seçin. (Açık kaynak projelerde imza sertifikası olmadığı için bu normaldir.)',
         ins3_title: "OBS'i Açın & Kaynağı Ekleyin",
@@ -1181,6 +1181,11 @@
           el.innerHTML = langData[currentLang][key];
         }
       });
+
+      // Re-apply dynamic version info if data is already fetched
+      if (typeof updateReleaseInfo === 'function') {
+        updateReleaseInfo();
+      }
     }
 
     if (langSwitchBtn) {
@@ -1233,6 +1238,13 @@
             if (id === 'dl-portable') el.href = data.portable_url;
           }
         }
+
+        // Update installer version in instructions (strip 'v')
+        const insVersion = data.latest_version.startsWith('v') ? data.latest_version.substring(1) : data.latest_version;
+        document.querySelectorAll('.ft-ins-version').forEach(el => {
+          el.innerText = insVersion;
+        });
+
         animateCounter(data.obs_forum_downloads);
       } catch (e) {
         console.error('Release info update error:', e);
