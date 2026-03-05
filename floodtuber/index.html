@@ -738,6 +738,39 @@
         justify-content: center;
       }
     }
+
+    .nav-btn-discord {
+      background: linear-gradient(45deg, #5865F2, #7f86fb);
+      color: white !important;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-btn-discord:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+    }
+
+    .dl-btn-discord {
+      background: rgba(88, 101, 242, 0.1);
+      color: #a5a9ff;
+      border: 1px solid rgba(88, 101, 242, 0.3);
+    }
+
+    .dl-btn-discord:hover {
+      background: rgba(88, 101, 242, 0.2);
+      border-color: #5865F2;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(88, 101, 242, 0.2);
+    }
   </style>
 </head>
 
@@ -754,6 +787,9 @@
         <a href="../index.html" data-lang="nav_home">Home</a>
         <a href="#features" data-lang="nav_features">Features</a>
         <a href="#howto" data-lang="nav_install">Installation</a>
+
+        <a href="https://discord.gg/wm5qPpYe9A" target="_blank" class="nav-btn-discord"><i class="fab fa-discord"></i>
+          Discord</a>
         <a href="https://github.com/justflood/flood-tuber" target="_blank" class="nav-btn-highlight"><i
             class="fab fa-github"></i> GitHub</a>
         <button id="lang-switch" class="lang-btn">TR</button>
@@ -815,6 +851,94 @@
       </div>
     </div>
   </section>
+
+  <!-- ====== DISCORD COMMUNITY ====== -->
+  <section class="discord-community" id="discord"
+    style="position: relative; background: linear-gradient(135deg, #11111a, #2c2f50); padding: 140px 0; overflow: hidden; margin: 60px 0;">
+    <!-- Wave top -->
+    <svg style="position: absolute; top: 0; left: 0; width: 100%; transform: rotate(180deg);"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="var(--bg-primary)" fill-opacity="1"
+        d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+
+    <div class="container"
+      style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;" data-aos="fade-right">
+        <div
+          style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(88,101,242,0.2); border-radius: 50px; color: #a5a9ff; font-size: 0.85rem; margin-bottom: 20px; border: 1px solid rgba(88,101,242,0.4); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">
+          <i class="fas fa-gem" style="color: #5865F2;"></i> <span data-lang="dc_badge">Exclusive Status for First
+            100</span>
+        </div>
+        <h2
+          style="font-family: var(--font-header); font-size: 3.5rem; color: white; margin-bottom: 20px; line-height: 1.1; text-shadow: 0 0 30px rgba(88,101,242,0.5);">
+          <span data-lang="dc_title_1">Become part of</span><br><span style="color: #5865F2;" data-lang="dc_title_2">Our
+            Community</span>
+        </h2>
+        <p style="color: rgba(255,255,255,0.8); font-size: 1.15rem; margin-bottom: 30px; max-width: 500px; line-height: 1.7;"
+          data-lang="dc_desc">
+          Don't just download the plugin, join the Flood Tuber community! Our custom-coded bot, Avatar Artist showcase
+          channels, and a massive developer/gamer network await you.
+        </p>
+
+        <div
+          style="background: rgba(0,0,0,0.4); border-radius: 12px; padding: 22px; margin-bottom: 30px; border: 1px solid rgba(88,101,242,0.2); max-width: 450px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+          <p
+            style="color: #5865F2; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-star" style="color: #5865F2;"></i> <span data-lang="dc_perks_title">Membership Perks</span>
+          </p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px;">
+            <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--text-primary);">
+              <span style="font-size: 1.2rem; transform: translateY(-2px);">🏆</span>
+              <span data-lang="dc_perk_10">Be one of the first <strong>10</strong> members to grab <br><strong>The First
+                  10</strong> role!</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--text-primary);">
+              <span style="font-size: 1.2rem; transform: translateY(-2px);">🚀</span>
+              <span data-lang="dc_perk_50">Be one of the first <strong>50</strong> members to grab <br><strong>The First
+                  50</strong> role!</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--text-primary);">
+              <span style="font-size: 1.2rem; transform: translateY(-2px);">🦅</span>
+              <span data-lang="dc_perk_100">Be one of the first <strong>100</strong> members and become a legend with
+                <br>
+                <strong>The First 100</strong> role!</span>
+            </li>
+            <hr style="border: 0; height: 1px; background: rgba(255,255,255,0.05); margin: 4px 0;">
+            <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--text-primary);">
+              <span style="font-size: 1.2rem; transform: translateY(-2px);">🤖</span>
+              <span data-lang="dc_perk_bot">Experience the server-exclusive <strong>"Flood Tuber"</strong> bot.</span>
+            </li>
+            <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; color: var(--text-primary);">
+              <span style="font-size: 1.2rem; transform: translateY(-2px);">🎨</span>
+              <span data-lang="dc_perk_artists">Special showcase channels for <strong>Avatar Artists</strong>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <a href="https://discord.gg/wm5qPpYe9A" target="_blank"
+            style="background: #5865F2; color: white; padding: 16px 32px; border-radius: 12px; font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; box-shadow: 0 4px 20px rgba(88,101,242,0.4); border: none; text-decoration: none;">
+            <i class="fab fa-discord" style="font-size: 1.3rem;"></i> <span data-lang="dc_join_btn">Join Now</span>
+          </a>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 300px; text-align: center;" data-aos="fade-left">
+        <i class="fab fa-discord"
+          style="font-size: 18rem; color: rgba(88,101,242,0.15); filter: drop-shadow(0 0 50px rgba(88,101,242,0.5)); transform: rotate(-10deg); animation: float 4s ease-in-out infinite;"></i>
+      </div>
+    </div>
+
+    <!-- Wave bottom -->
+    <svg style="position: absolute; bottom: 0; left: 0; width: 100%;" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320">
+      <path fill="var(--bg-primary)" fill-opacity="1"
+        d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+      </path>
+    </svg>
+  </section>
+
 
   <!-- ====== FEATURES ====== -->
   <section id="features" class="features">
@@ -1102,7 +1226,19 @@
         trust_ss_desc: 'Windows warns about unsigned .exe files. This is not a virus — it simply means the developer doesn\'t have an expensive signing certificate. Click "More Info" → "Run Anyway" to install safely.',
         dev_label: "Developer",
         dev_title: "Who's Behind This?",
-        dev_role: "FloodTechLab Founder & Aspiring Computer Engineer"
+        dev_role: "FloodTechLab Founder & Aspiring Computer Engineer",
+        dc_badge: "Exclusive Status for First 100",
+        dc_title_1: "Become part of",
+        dc_title_2: "Our Community",
+        dc_desc: "Don't just download the plugin, join the Flood Tuber community! Our custom-coded bot, Avatar Artist showcase channels, and a massive developer/gamer network await you.",
+        dc_perks_title: "Membership Perks",
+        dc_perk_10: "Be one of the first <strong>10</strong> members to grab <br><strong>The First 10</strong> role!",
+        dc_perk_50: "Be one of the first <strong>50</strong> members to grab <br><strong>The First 50</strong> role!",
+        dc_perk_100: "Be one of the first <strong>100</strong> members and become a legend with <br><strong>The First 100</strong> role!",
+        dc_perk_bot: "Experience the server-exclusive <strong>\"Flood Tuber\"</strong> bot.",
+        dc_perk_artists: "Special showcase channels for <strong>Avatar Artists</strong>.",
+        dc_join_btn: "Join Now",
+        dl_discord: "Join Discord"
       },
       tr: {
         nav_home: "Ana Sayfa",
@@ -1163,7 +1299,19 @@
         trust_ss_desc: 'Windows imzasız .exe dosyalarında uyarı verir. Bu bir virüs değil, pahalı bir sertifikanın olmamasıdır. "More Info" → "Run Anyway" ile güvenle kurabilirsiniz.',
         dev_label: "Geliştirici",
         dev_title: "Kim Geliştiriyor?",
-        dev_role: "FloodTechLab Kurucusu & Bilgisayar Mühendisi Adayı"
+        dev_role: "FloodTechLab Kurucusu & Bilgisayar Mühendisi Adayı",
+        dc_badge: "İlk 100 Üyeye Özel Statü",
+        dc_title_1: "Topluluğumuzun",
+        dc_title_2: "Bir Parçası Ol",
+        dc_desc: "Sadece eklentiyi indirme, Flood Tuber topluluğuna katıl! Özel yazdığımız botumuz, Avatar Çizerleri vitrin kanallarımız ve devasa yazılımcı/oyuncu ağı seni bekliyor.",
+        dc_perks_title: "Üyelik Ayrıcalıkları",
+        dc_perk_10: "İlk <strong>10</strong> üyeden biri ol, <br><strong>The First 10</strong> rolünü kap!",
+        dc_perk_50: "İlk <strong>50</strong> üyeden biri ol, <br><strong>The First 50</strong> rolünü kap!",
+        dc_perk_100: "İlk <strong>100</strong> üyeden biri ol, <br><strong>The First 100</strong> rolüyle efsaneleş!",
+        dc_perk_bot: "Sunucuya özel yazdığımız <strong>\"Flood Tuber\"</strong> bot deneyimi.",
+        dc_perk_artists: "<strong>Avatar Çizerlerine</strong> yeteneklerini sergileme kanalları.",
+        dc_join_btn: "Şimdi Katıl",
+        dl_discord: "Discord'a Katıl"
       }
     };
 
