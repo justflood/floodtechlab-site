@@ -1340,6 +1340,31 @@
       langSwitchBtn.addEventListener('click', toggleLanguage);
     }
 
+    // Mobile Menu Toggle
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileToggle && navLinks) {
+      mobileToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+
+        if (navLinks.style.display === 'flex') {
+          navLinks.style.display = '';
+        } else {
+          navLinks.style.display = 'flex';
+          navLinks.style.flexDirection = 'column';
+          navLinks.style.position = 'absolute';
+          navLinks.style.top = '60px';
+          navLinks.style.right = '20px';
+          navLinks.style.background = '#1e1e1e';
+          navLinks.style.padding = '20px';
+          navLinks.style.borderRadius = '10px';
+          navLinks.style.border = '1px solid #333';
+          navLinks.style.zIndex = '1000';
+        }
+      });
+    }
+
     // Tab switching for installation steps
     function switchTab(tab) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
