@@ -453,6 +453,18 @@ ul {
     color: var(--accent-color);
 }
 
+.card-icon-img {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: var(--accent-color);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
 .card-header h4 {
     font-size: 1.2rem;
     font-weight: 600;

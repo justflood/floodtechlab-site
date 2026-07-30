@@ -27,15 +27,19 @@ const projectsData = [
   },
 
   {
-    id: "shareyoursets",
+    id: "cfgspace",
     category: "ongoing",
-    icon: "fas fa-share-alt",
-    title: "ShareYourSets",
+    image: "assets/cfgspace.svg",
+    title: "CFGSpace",
     description: {
       tr: "Sosyal platform - Oyuncuların setup'larını ve oyun ayarlarını paylaştığı platform.",
       en: "Social platform - A platform where gamers share their setups and game settings."
     },
-    tags: ["React", "Firebase"]
+    tags: {
+      tr: ["🔥 Waitlist Açıldı!", "Katılmak için tıkla!"],
+      en: ["🔥 Waitlist Opened!", "Click to join!"]
+    },
+    url: "https://cfgspace.com"
   },
 
   {
@@ -92,12 +96,13 @@ function renderProjects(lang) {
       card.style.color = "inherit"; // Keep text color
     }
 
-    // Create tags HTML
-    const tagsHtml = project.tags.map(tag => `<span>${tag}</span>`).join('');
+    // Create tags HTML (support both array and localized object)
+    const currentTags = Array.isArray(project.tags) ? project.tags : (project.tags[lang] || project.tags.en);
+    const tagsHtml = currentTags.map(tag => `<span>${tag}</span>`).join('');
 
     card.innerHTML = `
             <div class="card-header">
-                <i class="${project.icon}"></i>
+                ${project.image ? `<div class="card-icon-img" style="-webkit-mask-image: url(${project.image}); mask-image: url(${project.image});" aria-label="${project.title} logo"></div>` : `<i class="${project.icon}"></i>`}
                 <h4>${project.title}</h4>
             </div>
             <p>${project.description[lang]}</p>
