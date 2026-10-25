@@ -345,6 +345,127 @@
       color: var(--accent);
     }
 
+    /* ============ COMPATIBILITY BANNER ============ */
+    .compat-banner {
+      background: linear-gradient(135deg, rgba(15, 15, 24, 0.95), rgba(20, 20, 35, 0.85));
+      border: 1px solid rgba(0, 168, 255, 0.25);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      max-width: 540px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      text-align: left;
+    }
+
+    .compat-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .compat-header i {
+      font-size: 0.9rem;
+    }
+
+    .compat-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .compat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+
+    .compat-row.current {
+      background: rgba(0, 168, 255, 0.08);
+      border: 1px solid rgba(0, 168, 255, 0.2);
+    }
+
+    .compat-row.legacy {
+      background: rgba(245, 158, 11, 0.06);
+      border: 1px solid rgba(245, 158, 11, 0.18);
+    }
+
+    .compat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: var(--font-header);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .compat-badge.current {
+      background: rgba(0, 168, 255, 0.18);
+      color: var(--accent);
+      border: 1px solid rgba(0, 168, 255, 0.35);
+    }
+
+    .compat-badge.legacy {
+      background: rgba(245, 158, 11, 0.18);
+      color: var(--warning);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .compat-desc {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .compat-desc .version-tag {
+      font-family: var(--font-header);
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    .compat-desc .compat-note {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+
+    .compat-legacy-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--warning);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: all 0.2s ease;
+    }
+
+    .compat-legacy-link:hover {
+      color: #fbbf24;
+      text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+    }
+
     /* ============ SECTION COMMON ============ */
     section {
       padding: 100px 0;
@@ -499,6 +620,52 @@
       border-radius: 4px;
       font-size: 0.85rem;
       color: var(--accent);
+    }
+
+    /* How-to Compatibility Notice Banner */
+    .howto-compat-banner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(15, 15, 24, 0.8);
+      border: 1px solid rgba(0, 168, 255, 0.2);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 16px 20px;
+      max-width: 750px;
+      margin: 0 auto 24px;
+      text-align: left;
+    }
+
+    .howto-compat-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .howto-compat-content {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .howto-compat-title {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+      font-size: 0.95rem;
+    }
+
+    .howto-compat-content a {
+      color: var(--warning);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+    }
+
+    .howto-compat-content a:hover {
+      color: #fbbf24;
     }
 
     .step-tabs {
@@ -712,6 +879,22 @@
         margin: 0 auto 30px;
       }
 
+      .compat-banner {
+        margin: 0 auto 24px;
+      }
+
+      .compat-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .howto-compat-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
       .download-group {
         justify-content: center;
       }
@@ -816,13 +999,41 @@
           Bring your streams to life with voice-reactive avatars.
         </p>
 
+        <!-- Compatibility Banner -->
+        <div class="compat-banner" data-aos="fade-up" data-aos-delay="150">
+          <div class="compat-header">
+            <i class="fas fa-shield-halved"></i>
+            <span data-lang="compat_header">OBS Studio Compatibility</span>
+          </div>
+          <div class="compat-rows">
+            <div class="compat-row current">
+              <span class="compat-badge current">OBS 33.0.0+</span>
+              <div class="compat-desc">
+                <span class="version-tag">v1.2.0</span>
+                <span class="compat-note" data-lang="compat_obs33_note">(Current — Use download buttons below)</span>
+              </div>
+            </div>
+            <div class="compat-row legacy">
+              <span class="compat-badge legacy">OBS ≤ 32.x</span>
+              <div class="compat-desc">
+                <span class="version-tag">v1.1.0</span>
+                <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer" class="compat-legacy-link">
+                  <i class="fab fa-github"></i>
+                  <span data-lang="compat_obs32_link">Download v1.1.0 (GitHub)</span>
+                  <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.72rem;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="download-group" data-aos="fade-up" data-aos-delay="200">
-          <a href="https://github.com/justflood/flood-tuber/releases/download/v0.2.0/FloodTuber-Installer-0.2.0.exe"
+          <a href="https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Installer-1.2.0.exe"
             id="dl-installer" class="dl-btn dl-btn-primary">
             <i class="fas fa-download"></i>
             <span data-lang="dl_installer">Download Installer</span>
           </a>
-          <a href="https://github.com/justflood/flood-tuber/releases/download/v0.2.0/FloodTuber-Portable-v0.2.0.zip"
+          <a href="https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Portable-v1.2.0.zip"
             id="dl-portable" class="dl-btn dl-btn-secondary">
             <i class="fas fa-file-zipper"></i>
             <span data-lang="dl_portable">Download Portable</span>
@@ -837,7 +1048,7 @@
           </div>
           <div class="stat">
             <i class="fas fa-code-branch"></i>
-            <span id="ft-main-version">v0.2.0</span>
+            <span id="ft-main-version">v1.2.0</span>
           </div>
           <div class="stat">
             <i class="fab fa-windows"></i>
@@ -997,6 +1208,21 @@
       <p class="section-desc" data-aos="fade-up" data-lang="howto_desc">We offer two installation methods. Choose
         whichever suits you best.</p>
 
+      <!-- Compatibility Notice -->
+      <div class="howto-compat-banner" data-aos="fade-up">
+        <div class="howto-compat-icon">
+          <i class="fas fa-circle-info"></i>
+        </div>
+        <div class="howto-compat-content">
+          <div class="howto-compat-title">
+            <span data-lang="howto_compat_title">OBS Studio 33.0.0+ Compatibility Notice</span>
+          </div>
+          <div class="howto-compat-text" data-lang="howto_compat_desc">
+            The installation steps below and current v1.2.0 release are for <strong>OBS Studio 33.0.0 and above</strong>. Using OBS Studio 32 or older? Please download <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">Flood Tuber v1.1.0 (GitHub)</a>.
+          </div>
+        </div>
+      </div>
+
       <!-- Tabs -->
       <div class="step-tabs" data-aos="fade-up">
         <div class="step-tab active" onclick="switchTab('installer')">
@@ -1014,7 +1240,7 @@
           <div class="step-content">
             <h4 data-lang="ins1_title">Download the Installer</h4>
             <p data-lang="ins1_desc">Click the <strong>"Download Installer"</strong> button above. The file
-              <code>FloodTuber-Installer-<span class="ft-ins-version">0.2.0</span>.exe</code> will be downloaded.
+              <code>FloodTuber-Installer-<span class="ft-ins-version">1.2.0</span>.exe</code> will be downloaded.
             </p>
           </div>
         </div>
@@ -1054,33 +1280,22 @@
         <div class="step" data-aos="fade-up">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h4 data-lang="port1_title">Download the ZIP</h4>
-            <p data-lang="port1_desc">Click the <strong>"Download Portable"</strong> button above and download the ZIP
-              file.</p>
+            <h4 data-lang="port1_title">Download Portable ZIP</h4>
+            <p data-lang="port1_desc">Click the <strong>"Download Portable"</strong> button above and download the ZIP file.</p>
           </div>
         </div>
         <div class="step" data-aos="fade-up">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h4 data-lang="port2_title">Copy the DLL</h4>
-            <p data-lang="port2_desc">Copy <code>flood-tuber.dll</code> to the OBS plugins
-              folder:<br><code>C:\Program Files\obs-studio\obs-plugins\64bit</code></p>
+            <h4 data-lang="port2_title">Extract to Plugins Folder</h4>
+            <p data-lang="port2_desc">Extract the <code>flood-tuber</code> folder from inside the ZIP directly to:<br><code>C:\ProgramData\obs-studio\plugins\</code></p>
           </div>
         </div>
         <div class="step" data-aos="fade-up">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h4 data-lang="port3_title">Copy the Data Folder</h4>
-            <p data-lang="port3_desc">Copy the <code>data/obs-plugins/flood-tuber</code> folder from the ZIP
-              to:<br><code>C:\Program Files\obs-studio\data\obs-plugins\flood-tuber</code></p>
-          </div>
-        </div>
-        <div class="step" data-aos="fade-up">
-          <div class="step-number">4</div>
-          <div class="step-content">
-            <h4 data-lang="port4_title">Restart OBS</h4>
-            <p data-lang="port4_desc">Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear
-              in the Sources panel.</p>
+            <h4 data-lang="port3_title">Restart OBS Studio</h4>
+            <p data-lang="port3_desc">Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear in the Sources panel.</p>
           </div>
         </div>
       </div>
@@ -1173,6 +1388,9 @@
         nav_install: "Installation",
         hero_badge: "OBS Studio Native Plugin",
         hero_desc: "A native PNGTuber plugin that integrates directly into OBS Studio — no external apps needed. Bring your streams to life with voice-reactive avatars.",
+        compat_header: "OBS Studio Compatibility",
+        compat_obs33_note: "(Current — Use download buttons below)",
+        compat_obs32_link: "Download v1.1.0 (GitHub)",
         dl_installer: "Download Installer",
         dl_portable: "Download Portable",
         hero_downloads: "downloads",
@@ -1194,24 +1412,24 @@
         howto_label: "Installation",
         howto_title: "How to Install & Use",
         howto_desc: "We offer two installation methods. Choose whichever suits you best.",
+        howto_compat_title: "OBS Studio 33.0.0+ Compatibility Notice",
+        howto_compat_desc: 'The installation steps below and current v1.2.0 release are for <strong>OBS Studio 33.0.0 and above</strong>. Using OBS Studio 32 or older? Please download <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">Flood Tuber v1.1.0 (GitHub)</a>.',
         tab_installer: "Installer (Easy)",
         tab_portable: "Portable (Manual)",
         ins1_title: "Download the Installer",
-        ins1_desc: 'Click the <strong>"Download Installer"</strong> button above. The file <code>FloodTuber-Installer-<span class="ft-ins-version">0.2.0</span>.exe</code> will be downloaded.',
+        ins1_desc: 'Click the <strong>"Download Installer"</strong> button above. The file <code>FloodTuber-Installer-<span class="ft-ins-version">1.2.0</span>.exe</code> will be downloaded.',
         ins2_title: "Run the Installer",
         ins2_desc: 'Double-click the downloaded file. If Windows SmartScreen appears, click <strong>"More Info"</strong> → <strong>"Run Anyway"</strong>. (This is normal for open-source projects without a signing certificate.)',
         ins3_title: "Open OBS & Add Source",
         ins3_desc: 'Open OBS Studio → Click <strong>"+"</strong> in the Sources panel → Select <strong>"Flood Tuber Avatar"</strong>.',
         ins4_title: "Configure Settings",
         ins4_desc: 'In the properties window, select your microphone source, load a preset from the <strong>Avatar Library</strong>, and adjust the <strong>Threshold</strong> to match your voice level. That\'s it!',
-        port1_title: "Download the ZIP",
+        port1_title: "Download Portable ZIP",
         port1_desc: 'Click the <strong>"Download Portable"</strong> button above and download the ZIP file.',
-        port2_title: "Copy the DLL",
-        port2_desc: 'Copy <code>flood-tuber.dll</code> to the OBS plugins folder:<br><code>C:\\Program Files\\obs-studio\\obs-plugins\\64bit</code>',
-        port3_title: "Copy the Data Folder",
-        port3_desc: 'Copy the <code>data/obs-plugins/flood-tuber</code> folder from the ZIP to:<br><code>C:\\Program Files\\obs-studio\\data\\obs-plugins\\flood-tuber</code>',
-        port4_title: "Restart OBS",
-        port4_desc: 'Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear in the Sources panel.',
+        port2_title: "Extract to Plugins Folder",
+        port2_desc: 'Extract the <code>flood-tuber</code> folder from inside the ZIP directly to:<br><code>C:\\ProgramData\\obs-studio\\plugins\\</code>',
+        port3_title: "Restart OBS Studio",
+        port3_desc: 'Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear in the Sources panel.',
         trust_label: "Security",
         trust_title: "Safe & Open Source",
         trust_desc: "Flood Tuber is fully open source. You can review the source code and build it yourself.",
@@ -1246,6 +1464,9 @@
         nav_install: "Kurulum",
         hero_badge: "OBS Studio Native Eklenti",
         hero_desc: "OBS Studio'ya doğrudan entegre olan, harici program gerektirmeyen PNGTuber eklentisi. Mikrofon sesinize tepki veren avatarlar ile yayınlarınızı canlandırın.",
+        compat_header: "OBS Studio Uyumluluk Bilgisi",
+        compat_obs33_note: "(Güncel — Aşağıdaki indirme butonları)",
+        compat_obs32_link: "v1.1.0 Sürümünü İndir (GitHub)",
         dl_installer: "Installer İndir",
         dl_portable: "Portable İndir",
         hero_downloads: "indirme",
@@ -1267,24 +1488,24 @@
         howto_label: "Kurulum",
         howto_title: "Nasıl Kurulur & Kullanılır?",
         howto_desc: "İki farklı kurulum yöntemi sunuyoruz. Kendinize uygun olanı seçin.",
+        howto_compat_title: "OBS Studio 33.0.0+ Uyumluluk Uyarısı",
+        howto_compat_desc: 'Güncel sürüm (v1.2.0) ve aşağıdaki kurulum adımları <strong>OBS Studio 33.0.0 ve üzeri</strong> için hazırlanmıştır. OBS Studio 32 ve daha eski sürümleri kullanıyorsanız lütfen <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">Flood Tuber v1.1.0 (GitHub)</a> sürümünü kullanın.',
         tab_installer: "Installer (Kolay)",
         tab_portable: "Portable (Manuel)",
         ins1_title: "Installer'ı İndirin",
-        ins1_desc: 'Yukarıdaki <strong>"Installer İndir"</strong> butonuna tıklayın. <code>FloodTuber-Installer-<span class="ft-ins-version">0.2.0</span>.exe</code> dosyası inecektir.',
+        ins1_desc: 'Yukarıdaki <strong>"Installer İndir"</strong> butonuna tıklayın. <code>FloodTuber-Installer-<span class="ft-ins-version">1.2.0</span>.exe</code> dosyası inecektir.',
         ins2_title: "Installer'ı Çalıştırın",
         ins2_desc: 'İndirilen dosyaya çift tıklayın. Windows SmartScreen uyarısı çıkarsa: <strong>"More Info"</strong> → <strong>"Run Anyway"</strong> seçin. (Açık kaynak projelerde imza sertifikası olmadığı için bu normaldir.)',
         ins3_title: "OBS'i Açın & Kaynağı Ekleyin",
         ins3_desc: 'OBS Studio\'yu açın → Kaynaklar paneline <strong>"+"</strong> butonuna basın → <strong>"Flood Tuber Avatar"</strong> kaynağını seçin.',
         ins4_title: "Ayarları Yapın",
         ins4_desc: 'Açılan pencerede mikrofon kaynağınızı seçin, <strong>Avatar Library</strong>\'den bir preset yükleyin ve <strong>Threshold</strong> değerini ses seviyenize göre ayarlayın. Hepsi bu kadar!',
-        port1_title: "ZIP Dosyasını İndirin",
+        port1_title: "Portable ZIP İndirin",
         port1_desc: 'Yukarıdaki <strong>"Portable İndir"</strong> butonuna tıklayın ve ZIP dosyasını indirin.',
-        port2_title: "DLL Dosyasını Kopyalayın",
-        port2_desc: '<code>flood-tuber.dll</code> dosyasını OBS plugins klasörüne yapıştırın:<br><code>C:\\Program Files\\obs-studio\\obs-plugins\\64bit</code>',
-        port3_title: "Data Klasörünü Kopyalayın",
-        port3_desc: 'ZIP içindeki <code>data/obs-plugins/flood-tuber</code> klasörünü şuraya yapıştırın:<br><code>C:\\Program Files\\obs-studio\\data\\obs-plugins\\flood-tuber</code>',
-        port4_title: "OBS'i Yeniden Başlatın",
-        port4_desc: 'OBS\'i kapatıp tekrar açın. Kaynaklar panelinde <strong>"Flood Tuber Avatar"</strong> artık görünecektir.',
+        port2_title: "Plugins Klasörüne Çıkartın",
+        port2_desc: 'ZIP içindeki <code>flood-tuber</code> klasörünü doğrudan şu dizine çıkartın:<br><code>C:\\ProgramData\\obs-studio\\plugins\\</code>',
+        port3_title: "OBS Studio'yu Yeniden Başlatın",
+        port3_desc: 'OBS\'i kapatıp tekrar açın. Kaynaklar panelinde <strong>"Flood Tuber Avatar"</strong> artık görünecektir.',
         trust_label: "Güvenlik",
         trust_title: "Güvenli & Açık Kaynak",
         trust_desc: "Flood Tuber tamamen açık kaynak kodludur. Kaynak kodunu inceleyebilir, kendiniz derleyebilirsiniz.",
@@ -1317,15 +1538,14 @@
 
     let currentLang = 'en';
     const langSwitchBtn = document.getElementById('lang-switch');
-    const langElements = document.querySelectorAll('[data-lang]');
 
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'tr' : 'en';
       langSwitchBtn.textContent = currentLang === 'en' ? 'TR' : 'EN';
 
-      langElements.forEach(el => {
+      document.querySelectorAll('[data-lang]').forEach(el => {
         const key = el.getAttribute('data-lang');
-        if (langData[currentLang][key]) {
+        if (langData[currentLang] && langData[currentLang][key]) {
           el.innerHTML = langData[currentLang][key];
         }
       });
