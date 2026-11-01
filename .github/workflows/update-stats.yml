@@ -16,46 +16,140 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch OBS Forum download count and Release Info
+      - name: Fetch OBS Forum download count and GitHub Releases
         run: |
-          # Fetch the OBS forum page
-          HTML=$(curl -s -L --max-time 30 \
-            -H "User-Agent: Mozilla/5.0 (compatible; FloodTechLab-Stats/1.0)" \
-            "https://obsproject.com/forum/resources/flood-tuber-native-pngtuber-plugin.2336/")
+          python3 - << 'EOF'
+          import json, re, urllib.request, ssl, datetime, os
 
-          # Parse "Downloads" from XenForo HTML structure
-          FORUM_COUNT=$(echo "$HTML" | grep -A1 '<dt>Downloads</dt>' | grep '<dd>' | grep -oP '\d[\d,]*' | tr -d ',')
-          
-          if [[ -z "$FORUM_COUNT" || "$FORUM_COUNT" -le 0 ]]; then
-            echo "ERROR: Could not parse download count. Falling back to 0."
-            FORUM_COUNT=0
-          fi
+          ctx = ssl.create_default_context()
+          ctx.check_hostname = False
+          ctx.verify_mode = ssl.CERT_NONE
 
-          # Fetch Latest Release from GitHub
-          RELEASE_JSON=$(curl -s "https://api.github.com/repos/justflood/flood-tuber/releases/latest")
-          
-          VERSION=$(echo "$RELEASE_JSON" | grep -oP '"tag_name":\s*"\K[^"]+')
-          INSTALLER_URL=$(echo "$RELEASE_JSON" | grep -oP '"browser_download_url":\s*"\K[^"]+Installer[^"]+')
-          PORTABLE_URL=$(echo "$RELEASE_JSON" | grep -oP '"browser_download_url":\s*"\K[^"]+Portable[^"]+')
+          # Load existing stats.json as fallback
+          existing = {}
+          if os.path.exists('stats.json'):
+              try:
+                  with open('stats.json', 'r', encoding='utf-8') as f:
+                      existing = json.load(f)
+              except Exception:
+                  pass
 
-          echo "Latest Version: $VERSION"
-          echo "Installer URL: $INSTALLER_URL"
-          echo "Portable URL: $PORTABLE_URL"
+          # 1. Fetch OBS Forum download count
+          forum_count = existing.get('obs_forum_downloads', 0)
+          try:
+              req = urllib.request.Request(
+                  'https://obsproject.com/forum/resources/flood-tuber-native-pngtuber-plugin.2336/',
+                  headers={'User-Agent': 'Mozilla/5.0 (compatible; FloodTechLab-Stats/2.0)'}
+              )
+              html = urllib.request.urlopen(req, timeout=30, context=ctx).read().decode('utf-8', errors='ignore')
+              m = re.search(r'<dt>Downloads</dt>\s*<dd>([0-9,]+)</dd>', html)
+              if m:
+                  parsed = int(m.group(1).replace(',', ''))
+                  if parsed > 0:
+                      forum_count = parsed
+          except Exception as e:
+              print(f"Warning: Could not fetch OBS Forum count ({e}). Keeping previous: {forum_count}")
 
-          # Update stats.json
-          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          cat > stats.json << EOF
-          {
-            "obs_forum_downloads": $FORUM_COUNT,
-            "latest_version": "$VERSION",
-            "installer_url": "$INSTALLER_URL",
-            "portable_url": "$PORTABLE_URL",
-            "last_updated": "$TIMESTAMP"
+          # 2. Fetch all releases from GitHub
+          req_rel = urllib.request.Request(
+              'https://api.github.com/repos/justflood/flood-tuber/releases?per_page=30',
+              headers={'User-Agent': 'FloodTechLab-Stats/2.0', 'Accept': 'application/vnd.github+json'}
+          )
+          raw_releases = json.loads(urllib.request.urlopen(req_rel, timeout=30, context=ctx).read().decode('utf-8'))
+
+          def extract_platform_urls(assets):
+              urls = {
+                  'installer_url': '',
+                  'portable_url': '',
+                  'macos_url': '',
+                  'linux_deb_url': '',
+                  'source_url': ''
+              }
+              for a in assets:
+                  name = a.get('name', '')
+                  url = a.get('browser_download_url', '')
+                  low = name.lower()
+                  if 'installer' in low and low.endswith('.exe'):
+                      urls['installer_url'] = url
+                  elif 'portable' in low and low.endswith('.zip'):
+                      urls['portable_url'] = url
+                  elif low.endswith('.pkg') or ('macos' in low and not low.endswith('.ddeb')):
+                      if not urls['macos_url'] or low.endswith('.pkg'):
+                          urls['macos_url'] = url
+                  elif low.endswith('.deb') and 'dbgsym' not in low:
+                      urls['linux_deb_url'] = url
+                  elif 'source' in low or low.endswith('.tar.xz') or low.endswith('.tar.gz'):
+                      urls['source_url'] = url
+              return urls
+
+          releases_clean = []
+          latest_stable = None
+          latest_prerelease = None
+
+          for r in raw_releases:
+              if r.get('draft'):
+                  continue
+              assets_clean = []
+              for a in r.get('assets', []):
+                  assets_clean.append({
+                      'name': a.get('name', ''),
+                      'size': a.get('size', 0),
+                      'download_count': a.get('download_count', 0),
+                      'browser_download_url': a.get('browser_download_url', '')
+                  })
+              p_urls = extract_platform_urls(assets_clean)
+              rel_obj = {
+                  'tag_name': r.get('tag_name', ''),
+                  'name': r.get('name') or r.get('tag_name', ''),
+                  'prerelease': bool(r.get('prerelease', False)),
+                  'published_at': r.get('published_at', ''),
+                  'html_url': r.get('html_url', ''),
+                  'body': r.get('body', ''),
+                  'assets': assets_clean,
+                  **p_urls
+              }
+              releases_clean.append(rel_obj)
+
+              if not rel_obj['prerelease'] and latest_stable is None:
+                  latest_stable = rel_obj
+              elif rel_obj['prerelease'] and latest_prerelease is None and latest_stable is None:
+                  # Only set latest_prerelease if it is newer than the latest stable release
+                  latest_prerelease = rel_obj
+
+          if latest_stable is None and releases_clean:
+              latest_stable = releases_clean[0]
+
+          now_iso = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+          output = {
+              'obs_forum_downloads': forum_count,
+              'latest_version': latest_stable['tag_name'] if latest_stable else 'v1.2.0',
+              'installer_url': latest_stable['installer_url'] if latest_stable else '',
+              'portable_url': latest_stable['portable_url'] if latest_stable else '',
+              'macos_url': latest_stable['macos_url'] if latest_stable else '',
+              'linux_deb_url': latest_stable['linux_deb_url'] if latest_stable else '',
+              'source_url': latest_stable['source_url'] if latest_stable else '',
+              'latest_prerelease': {
+                  'tag_name': latest_prerelease['tag_name'],
+                  'name': latest_prerelease['name'],
+                  'published_at': latest_prerelease['published_at'],
+                  'html_url': latest_prerelease['html_url'],
+                  'installer_url': latest_prerelease['installer_url'],
+                  'portable_url': latest_prerelease['portable_url'],
+                  'macos_url': latest_prerelease['macos_url'],
+                  'linux_deb_url': latest_prerelease['linux_deb_url'],
+                  'source_url': latest_prerelease['source_url']
+              } if latest_prerelease else None,
+              'releases': releases_clean,
+              'last_updated': now_iso
           }
-          EOF
 
-          # Fix indentation
-          sed -i 's/^          //' stats.json
+          with open('stats.json', 'w', encoding='utf-8') as f:
+              json.dump(output, f, indent=2, ensure_ascii=False)
+              f.write('\n')
+
+          print(f"Updated stats.json: downloads={forum_count}, stable={output['latest_version']}, prerelease={output['latest_prerelease']['tag_name'] if output['latest_prerelease'] else None}")
+          EOF
 
       - name: Commit and push if changed
         run: |
@@ -65,4 +159,3 @@ jobs:
           git diff --staged --quiet && echo "Nothing to commit." && exit 0
           git commit -m "📊 Update release info and stats [automated]"
           git push
-

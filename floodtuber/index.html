@@ -466,6 +466,146 @@
       text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
     }
 
+    .compat-desc .version-tag.prerelease-tag {
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+    }
+
+    /* ============ PRE-RELEASE / BETA HERO CARD ============ */
+    .prerelease-card {
+      background: linear-gradient(135deg, rgba(22, 16, 38, 0.92), rgba(15, 15, 26, 0.92));
+      border: 1px solid rgba(168, 85, 247, 0.38);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      max-width: 580px;
+      box-shadow: 0 6px 28px rgba(168, 85, 247, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      text-align: left;
+    }
+
+    .prerelease-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .prerelease-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pre-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(168, 85, 247, 0.22);
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      color: #d8b4fe;
+      font-family: var(--font-header);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .pre-version-tag {
+      font-family: var(--font-header);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .pre-notes-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #c084fc;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .pre-notes-btn:hover {
+      background: rgba(168, 85, 247, 0.22);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .prerelease-sub {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .prerelease-dl-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pre-dl-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+    }
+
+    .pre-dl-pill:hover {
+      background: rgba(168, 85, 247, 0.2);
+      border-color: #c084fc;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .pre-dl-pill.primary {
+      background: linear-gradient(135deg, #9333ea, #6b21a8);
+      border-color: rgba(192, 132, 252, 0.4);
+      color: #fff;
+    }
+
+    .pre-dl-pill.primary:hover {
+      box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4);
+    }
+
+    .hero-releases-jump {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .hero-releases-jump:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: #fff;
+    }
+
     /* ============ SECTION COMMON ============ */
     section {
       padding: 100px 0;
@@ -707,6 +847,474 @@
       gap: 24px;
     }
 
+    /* ============ RELEASES & CHANGELOG HUB ============ */
+    .releases-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .releases-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      max-width: 920px;
+      margin: 0 auto 30px;
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .releases-filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .release-filter-btn {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .release-filter-btn.active,
+    .release-filter-btn:hover {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .release-jump-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .release-jump-label {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .release-select {
+      background: #141422;
+      color: var(--text-primary);
+      border: 1px solid rgba(0, 168, 255, 0.3);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-family: var(--font-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .release-select:focus,
+    .release-select:hover {
+      border-color: var(--accent);
+    }
+
+    .releases-container {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      text-align: left;
+    }
+
+    .release-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 28px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .release-card.is-stable {
+      border-color: rgba(0, 168, 255, 0.35);
+      box-shadow: 0 4px 25px rgba(0, 168, 255, 0.08);
+    }
+
+    .release-card.is-prerelease {
+      border-color: rgba(168, 85, 247, 0.38);
+      box-shadow: 0 4px 25px rgba(168, 85, 247, 0.08);
+    }
+
+    .release-card.is-legacy-highlight {
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+
+    @keyframes pulseHighlight {
+      0% { box-shadow: 0 0 0 0 rgba(0, 168, 255, 0.6); }
+      50% { box-shadow: 0 0 35px 8px rgba(0, 168, 255, 0.45); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 168, 255, 0); }
+    }
+
+    .release-card.pulse-focus {
+      animation: pulseHighlight 1.8s ease-out;
+    }
+
+    .release-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .release-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .release-badges-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .release-version-pill {
+      font-family: var(--font-header);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-right: 4px;
+    }
+
+    .rel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .rel-badge.stable {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .rel-badge.beta {
+      background: rgba(168, 85, 247, 0.18);
+      color: #d8b4fe;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .rel-badge.obs33 {
+      background: rgba(0, 168, 255, 0.14);
+      color: var(--accent);
+      border: 1px solid rgba(0, 168, 255, 0.3);
+    }
+
+    .rel-badge.legacy {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .release-title-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .release-header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .release-gh-ext {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-secondary);
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+
+    .release-gh-ext:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .release-assets-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .release-assets-label i {
+      color: var(--accent);
+    }
+
+    .release-assets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .asset-dl-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s ease;
+    }
+
+    .asset-dl-card:hover {
+      background: rgba(0, 168, 255, 0.08);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .asset-dl-card.recommended {
+      background: rgba(0, 168, 255, 0.07);
+      border-color: rgba(0, 168, 255, 0.28);
+    }
+
+    .asset-dl-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .asset-os-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(0, 168, 255, 0.12);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .asset-os-icon.macos {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f0f0f5;
+    }
+
+    .asset-os-icon.linux {
+      background: rgba(245, 158, 11, 0.14);
+      color: #fbbf24;
+    }
+
+    .asset-os-icon.source {
+      background: rgba(168, 85, 247, 0.14);
+      color: #c084fc;
+    }
+
+    .asset-info {
+      min-width: 0;
+    }
+
+    .asset-platform-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .asset-filename {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 175px;
+    }
+
+    .asset-dl-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .asset-size {
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .asset-dl-icon {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .release-notes-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .release-notes-toggle:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(0, 168, 255, 0.3);
+    }
+
+    .release-notes-toggle i.chevron {
+      transition: transform 0.25s ease;
+      color: var(--accent);
+    }
+
+    .release-notes-toggle.open i.chevron {
+      transform: rotate(180deg);
+    }
+
+    .release-notes-body {
+      display: none;
+      margin-top: 14px;
+      padding: 20px 22px;
+      background: rgba(5, 5, 10, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .release-notes-body.open {
+      display: block;
+    }
+
+    .release-markdown h1,
+    .release-markdown h2,
+    .release-markdown h3,
+    .release-markdown h4 {
+      color: #fff;
+      font-family: var(--font-main);
+      font-weight: 700;
+      margin: 16px 0 8px;
+      line-height: 1.4;
+    }
+
+    .release-markdown h1:first-child,
+    .release-markdown h2:first-child,
+    .release-markdown h3:first-child {
+      margin-top: 0;
+    }
+
+    .release-markdown h2 {
+      font-size: 1.08rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .release-markdown h3 {
+      font-size: 0.98rem;
+      color: var(--accent);
+    }
+
+    .release-markdown p {
+      margin: 8px 0;
+    }
+
+    .release-markdown ul,
+    .release-markdown ol {
+      padding-left: 22px;
+      margin: 8px 0;
+    }
+
+    .release-markdown li {
+      margin-bottom: 6px;
+    }
+
+    .release-markdown strong {
+      color: #f0f0f5;
+    }
+
+    .release-markdown code {
+      background: rgba(0, 168, 255, 0.12);
+      color: var(--accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      word-break: break-all;
+    }
+
+    .release-markdown blockquote {
+      margin: 12px 0;
+      padding: 10px 14px;
+      border-left: 3px solid #c084fc;
+      background: rgba(168, 85, 247, 0.08);
+      border-radius: 0 8px 8px 0;
+      color: #e9d5ff;
+    }
+
+    .release-markdown hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 16px 0;
+    }
+
+    .release-markdown a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .release-markdown a:hover {
+      color: #fff;
+    }
+
     /* ============ TRUST / VIRUSTOTAL ============ */
     .trust {
       background: var(--bg-secondary);
@@ -883,6 +1491,27 @@
         margin: 0 auto 24px;
       }
 
+      .prerelease-card {
+        margin: 0 auto 24px;
+      }
+
+      .releases-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .release-jump-group {
+        justify-content: space-between;
+      }
+
+      .release-card {
+        padding: 20px 18px;
+      }
+
+      .step-tabs {
+        flex-wrap: wrap;
+      }
+
       .compat-row {
         flex-direction: column;
         align-items: flex-start;
@@ -970,6 +1599,7 @@
         <a href="../index.html" data-lang="nav_home">Home</a>
         <a href="#features" data-lang="nav_features">Features</a>
         <a href="#howto" data-lang="nav_install">Installation</a>
+        <a href="#releases" data-lang="nav_releases">Releases</a>
 
         <a href="https://discord.gg/wm5qPpYe9A" target="_blank" class="nav-btn-discord"><i class="fab fa-discord"></i>
           Discord</a>
@@ -1009,7 +1639,8 @@
             <div class="compat-row current">
               <span class="compat-badge current">OBS 33.0.0+</span>
               <div class="compat-desc">
-                <span class="version-tag">v1.2.0</span>
+                <span class="version-tag ft-stable-version">v1.2.0</span>
+                <span class="version-tag prerelease-tag" id="compat-prerelease-tag" style="display: none;">v1.3.0-beta1</span>
                 <span class="compat-note" data-lang="compat_obs33_note">(Current — Use download buttons below)</span>
               </div>
             </div>
@@ -1017,10 +1648,10 @@
               <span class="compat-badge legacy">OBS ≤ 32.x</span>
               <div class="compat-desc">
                 <span class="version-tag">v1.1.0</span>
-                <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer" class="compat-legacy-link">
-                  <i class="fab fa-github"></i>
-                  <span data-lang="compat_obs32_link">Download v1.1.0 (GitHub)</span>
-                  <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.72rem;"></i>
+                <a href="#release-v1-1-0" onclick="scrollToRelease('v1.1.0', event)" class="compat-legacy-link">
+                  <i class="fas fa-download"></i>
+                  <span data-lang="compat_obs32_link">Download v1.1.0 (Legacy)</span>
+                  <i class="fas fa-arrow-down" style="font-size: 0.72rem;"></i>
                 </a>
               </div>
             </div>
@@ -1030,7 +1661,7 @@
         <div class="download-group" data-aos="fade-up" data-aos-delay="200">
           <a href="https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Installer-1.2.0.exe"
             id="dl-installer" class="dl-btn dl-btn-primary">
-            <i class="fas fa-download"></i>
+            <i class="fab fa-windows"></i>
             <span data-lang="dl_installer">Download Installer</span>
           </a>
           <a href="https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Portable-v1.2.0.zip"
@@ -1038,6 +1669,48 @@
             <i class="fas fa-file-zipper"></i>
             <span data-lang="dl_portable">Download Portable</span>
           </a>
+          <a href="#" id="dl-macos" class="dl-btn dl-btn-secondary" style="display: none;">
+            <i class="fab fa-apple"></i>
+            <span data-lang="dl_macos">macOS (.pkg)</span>
+          </a>
+          <a href="#" id="dl-linux" class="dl-btn dl-btn-secondary" style="display: none;">
+            <i class="fab fa-linux"></i>
+            <span data-lang="dl_linux">Linux (.deb)</span>
+          </a>
+        </div>
+
+        <!-- Automatic Pre-Release / Beta Box (Option A) -->
+        <div id="prerelease-card" class="prerelease-card" style="display: none;" data-aos="fade-up" data-aos-delay="240">
+          <div class="prerelease-header">
+            <div class="prerelease-title-group">
+              <span class="pre-badge"><i class="fas fa-flask"></i> <span data-lang="pre_badge_label">BETA / PRE-RELEASE</span></span>
+              <span class="pre-version-tag" id="pre-version-tag">v1.3.0-beta1</span>
+            </div>
+            <a href="#releases" onclick="scrollToRelease(window.currentPrereleaseTag || 'v1.3.0-beta1', event)" class="pre-notes-btn">
+              <i class="fas fa-scroll"></i>
+              <span data-lang="pre_view_notes">Release Notes</span>
+            </a>
+          </div>
+          <p class="prerelease-sub" id="prerelease-sub-text" data-lang="pre_available_text">
+            A newer test build is available! Try upcoming features and cross-platform builds (Windows, macOS & Linux):
+          </p>
+          <div class="prerelease-dl-grid">
+            <a href="#" id="pre-dl-installer" class="pre-dl-pill primary" style="display: none;">
+              <i class="fab fa-windows"></i> <span data-lang="pre_dl_win_ins">Windows (.exe)</span>
+            </a>
+            <a href="#" id="pre-dl-portable" class="pre-dl-pill" style="display: none;">
+              <i class="fas fa-file-zipper"></i> <span data-lang="pre_dl_win_port">Portable (.zip)</span>
+            </a>
+            <a href="#" id="pre-dl-macos" class="pre-dl-pill" style="display: none;">
+              <i class="fab fa-apple"></i> <span data-lang="pre_dl_macos">macOS (.pkg)</span>
+            </a>
+            <a href="#" id="pre-dl-linux" class="pre-dl-pill" style="display: none;">
+              <i class="fab fa-linux"></i> <span data-lang="pre_dl_linux">Linux (.deb)</span>
+            </a>
+            <a href="#releases" onclick="scrollToRelease(window.currentPrereleaseTag || 'v1.3.0-beta1', event)" class="pre-dl-pill">
+              <i class="fas fa-box-open"></i> <span data-lang="pre_all_files">All Files & Notes</span>
+            </a>
+          </div>
         </div>
 
         <div class="hero-meta" data-aos="fade-up" data-aos-delay="300">
@@ -1052,7 +1725,15 @@
           </div>
           <div class="stat">
             <i class="fab fa-windows"></i>
-            <span>Windows x64</span>
+            <i class="fab fa-apple"></i>
+            <i class="fab fa-linux"></i>
+            <span>Win · macOS · Linux</span>
+          </div>
+          <div class="stat">
+            <a href="#releases" class="hero-releases-jump">
+              <i class="fas fa-clock-rotate-left"></i>
+              <span data-lang="hero_all_releases">All Versions & Notes</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1218,18 +1899,21 @@
             <span data-lang="howto_compat_title">OBS Studio 33.0.0+ Compatibility Notice</span>
           </div>
           <div class="howto-compat-text" data-lang="howto_compat_desc">
-            The installation steps below and current v1.2.0 release are for <strong>OBS Studio 33.0.0 and above</strong>. Using OBS Studio 32 or older? Please download <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">Flood Tuber v1.1.0 (GitHub)</a>.
+            The installation steps below and current <span class="ft-stable-version">v1.2.0</span> release are for <strong>OBS Studio 33.0.0 and above</strong>. Using OBS Studio 32 or older? Please download <a href="#release-v1-1-0" onclick="scrollToRelease('v1.1.0', event)">Flood Tuber v1.1.0 (Legacy)</a>.
           </div>
         </div>
       </div>
 
       <!-- Tabs -->
       <div class="step-tabs" data-aos="fade-up">
-        <div class="step-tab active" onclick="switchTab('installer')">
-          <i class="fas fa-download"></i> <span data-lang="tab_installer">Installer (Easy)</span>
+        <div class="step-tab active" onclick="switchTab('installer', event)">
+          <i class="fab fa-windows"></i> <span data-lang="tab_installer">Installer (Easy)</span>
         </div>
-        <div class="step-tab" onclick="switchTab('portable')">
+        <div class="step-tab" onclick="switchTab('portable', event)">
           <i class="fas fa-file-zipper"></i> <span data-lang="tab_portable">Portable (Manual)</span>
+        </div>
+        <div class="step-tab" onclick="switchTab('unix', event)">
+          <i class="fab fa-apple"></i> <i class="fab fa-linux"></i> <span data-lang="tab_unix">macOS & Linux</span>
         </div>
       </div>
 
@@ -1298,6 +1982,67 @@
             <p data-lang="port3_desc">Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear in the Sources panel.</p>
           </div>
         </div>
+      </div>
+
+      <!-- macOS & Linux Steps -->
+      <div id="tab-unix" class="tab-content steps-container">
+        <div class="step" data-aos="fade-up">
+          <div class="step-number"><i class="fab fa-apple"></i></div>
+          <div class="step-content">
+            <h4 data-lang="unix1_title">macOS Installation (Intel & Apple Silicon)</h4>
+            <p data-lang="unix1_desc">Download the <code>macos-universal.pkg</code> installer and open it to install automatically, or extract the <code>.tar.xz</code> archive into:<br><code>~/Library/Application Support/obs-studio/plugins/</code></p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number"><i class="fab fa-linux"></i></div>
+          <div class="step-content">
+            <h4 data-lang="unix2_title">Linux Installation (Ubuntu / Debian x86_64)</h4>
+            <p data-lang="unix2_desc">Download the <code>.deb</code> package and install via terminal:<br><code>sudo apt install ./flood-tuber-*-x86_64-linux-gnu.deb</code><br>Or extract the <code>.tar.xz</code> archive into <code>~/.config/obs-studio/plugins/</code>.</p>
+          </div>
+        </div>
+        <div class="step" data-aos="fade-up">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4 data-lang="unix3_title">Restart OBS Studio</h4>
+            <p data-lang="unix3_desc">Restart OBS Studio, click <strong>"+"</strong> in the Sources panel, and select <strong>"Flood Tuber Avatar"</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ALL RELEASES & CHANGELOG HUB ====== -->
+  <section id="releases" class="releases-section">
+    <div class="container section-center">
+      <p class="section-label" data-aos="fade-up" data-lang="rel_label">Releases & Changelog</p>
+      <h2 class="section-title" data-aos="fade-up" data-lang="rel_title">All Versions & Release Notes</h2>
+      <p class="section-desc" data-aos="fade-up" data-lang="rel_desc">
+        Browse every stable and beta release, read full changelogs, and download packages for Windows, macOS, and Linux directly without leaving the site.
+      </p>
+
+      <div class="releases-toolbar" data-aos="fade-up">
+        <div class="releases-filters">
+          <button class="release-filter-btn active" data-filter="all" onclick="filterReleases('all', this)">
+            <span data-lang="rel_filter_all">All Releases</span>
+          </button>
+          <button class="release-filter-btn" data-filter="stable" onclick="filterReleases('stable', this)">
+            <i class="fas fa-check-circle" style="color: #4ade80;"></i> <span data-lang="rel_filter_stable">Stable</span>
+          </button>
+          <button class="release-filter-btn" data-filter="beta" onclick="filterReleases('beta', this)">
+            <i class="fas fa-flask" style="color: #c084fc;"></i> <span data-lang="rel_filter_beta">Beta / Pre-release</span>
+          </button>
+        </div>
+
+        <div class="release-jump-group">
+          <span class="release-jump-label" data-lang="rel_jump_label">Jump to version:</span>
+          <select id="release-jump-select" class="release-select" onchange="onSelectReleaseJump(this.value)">
+            <option value="">v1.2.0</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="releases-list" class="releases-container" data-aos="fade-up">
+        <!-- Dynamically populated by JS from GitHub Releases / stats.json -->
       </div>
     </div>
   </section>
@@ -1386,14 +2131,26 @@
         nav_home: "Home",
         nav_features: "Features",
         nav_install: "Installation",
+        nav_releases: "Releases",
         hero_badge: "OBS Studio Native Plugin",
         hero_desc: "A native PNGTuber plugin that integrates directly into OBS Studio — no external apps needed. Bring your streams to life with voice-reactive avatars.",
         compat_header: "OBS Studio Compatibility",
         compat_obs33_note: "(Current — Use download buttons below)",
-        compat_obs32_link: "Download v1.1.0 (GitHub)",
+        compat_obs32_link: "Download v1.1.0 (Legacy)",
         dl_installer: "Download Installer",
         dl_portable: "Download Portable",
+        dl_macos: "macOS (.pkg)",
+        dl_linux: "Linux (.deb)",
+        pre_badge_label: "BETA / PRE-RELEASE",
+        pre_view_notes: "Release Notes",
+        pre_available_text: "A newer test build is available! Try upcoming features and cross-platform builds (Windows, macOS & Linux):",
+        pre_dl_win_ins: "Windows (.exe)",
+        pre_dl_win_port: "Portable (.zip)",
+        pre_dl_macos: "macOS (.pkg)",
+        pre_dl_linux: "Linux (.deb)",
+        pre_all_files: "All Files & Notes",
         hero_downloads: "downloads",
+        hero_all_releases: "All Versions & Notes",
         feat_label: "Features",
         feat_title: "Why Flood Tuber?",
         feat_desc: "Unlike other PNGTuber solutions, Flood Tuber runs natively inside OBS. No extra windows, no extra programs required.",
@@ -1411,11 +2168,12 @@
         feat6_desc: "Choose Shake, Bounce, or None motion modes. Flip your avatar horizontally with one checkbox.",
         howto_label: "Installation",
         howto_title: "How to Install & Use",
-        howto_desc: "We offer two installation methods. Choose whichever suits you best.",
+        howto_desc: "We offer installation methods for Windows, macOS, and Linux. Choose whichever suits you best.",
         howto_compat_title: "OBS Studio 33.0.0+ Compatibility Notice",
-        howto_compat_desc: 'The installation steps below and current v1.2.0 release are for <strong>OBS Studio 33.0.0 and above</strong>. Using OBS Studio 32 or older? Please download <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">Flood Tuber v1.1.0 (GitHub)</a>.',
+        howto_compat_desc: 'The installation steps below and current <span class="ft-stable-version">v1.2.0</span> release are for <strong>OBS Studio 33.0.0 and above</strong>. Using OBS Studio 32 or older? Please download <a href="#release-v1-1-0" onclick="scrollToRelease(\'v1.1.0\', event)">Flood Tuber v1.1.0 (Legacy)</a>.',
         tab_installer: "Installer (Easy)",
         tab_portable: "Portable (Manual)",
+        tab_unix: "macOS & Linux",
         ins1_title: "Download the Installer",
         ins1_desc: 'Click the <strong>"Download Installer"</strong> button above. The file <code>FloodTuber-Installer-<span class="ft-ins-version">1.2.0</span>.exe</code> will be downloaded.',
         ins2_title: "Run the Installer",
@@ -1430,6 +2188,19 @@
         port2_desc: 'Extract the <code>flood-tuber</code> folder from inside the ZIP directly to:<br><code>C:\\ProgramData\\obs-studio\\plugins\\</code>',
         port3_title: "Restart OBS Studio",
         port3_desc: 'Close and reopen OBS Studio. <strong>"Flood Tuber Avatar"</strong> will now appear in the Sources panel.',
+        unix1_title: "macOS Installation (Intel & Apple Silicon)",
+        unix1_desc: 'Download the <code>macos-universal.pkg</code> installer and open it to install automatically, or extract the <code>.tar.xz</code> archive into:<br><code>~/Library/Application Support/obs-studio/plugins/</code>',
+        unix2_title: "Linux Installation (Ubuntu / Debian x86_64)",
+        unix2_desc: 'Download the <code>.deb</code> package and install via terminal:<br><code>sudo apt install ./flood-tuber-*-x86_64-linux-gnu.deb</code><br>Or extract the <code>.tar.xz</code> archive into <code>~/.config/obs-studio/plugins/</code>.',
+        unix3_title: "Restart OBS Studio",
+        unix3_desc: 'Restart OBS Studio, click <strong>"+"</strong> in the Sources panel, and select <strong>"Flood Tuber Avatar"</strong>.',
+        rel_label: "Releases & Changelog",
+        rel_title: "All Versions & Release Notes",
+        rel_desc: "Browse every stable and beta release, read full changelogs, and download packages for Windows, macOS, and Linux directly without leaving the site.",
+        rel_filter_all: "All Releases",
+        rel_filter_stable: "Stable",
+        rel_filter_beta: "Beta / Pre-release",
+        rel_jump_label: "Jump to version:",
         trust_label: "Security",
         trust_title: "Safe & Open Source",
         trust_desc: "Flood Tuber is fully open source. You can review the source code and build it yourself.",
@@ -1462,14 +2233,26 @@
         nav_home: "Ana Sayfa",
         nav_features: "Özellikler",
         nav_install: "Kurulum",
+        nav_releases: "Sürümler",
         hero_badge: "OBS Studio Native Eklenti",
         hero_desc: "OBS Studio'ya doğrudan entegre olan, harici program gerektirmeyen PNGTuber eklentisi. Mikrofon sesinize tepki veren avatarlar ile yayınlarınızı canlandırın.",
         compat_header: "OBS Studio Uyumluluk Bilgisi",
         compat_obs33_note: "(Güncel — Aşağıdaki indirme butonları)",
-        compat_obs32_link: "v1.1.0 Sürümünü İndir (GitHub)",
+        compat_obs32_link: "v1.1.0 Sürümünü İndir (Eski Sürüm)",
         dl_installer: "Installer İndir",
         dl_portable: "Portable İndir",
+        dl_macos: "macOS (.pkg)",
+        dl_linux: "Linux (.deb)",
+        pre_badge_label: "BETA / ÖN SÜRÜM",
+        pre_view_notes: "Sürüm Notları",
+        pre_available_text: "Yeni bir test sürümü yayında! Yeni özellikleri ve çoklu platform paketlerini (Windows, macOS & Linux) hemen deneyin:",
+        pre_dl_win_ins: "Windows (.exe)",
+        pre_dl_win_port: "Portable (.zip)",
+        pre_dl_macos: "macOS (.pkg)",
+        pre_dl_linux: "Linux (.deb)",
+        pre_all_files: "Tüm Dosyalar & Notlar",
         hero_downloads: "indirme",
+        hero_all_releases: "Tüm Sürümler & Notlar",
         feat_label: "Özellikler",
         feat_title: "Neden Flood Tuber?",
         feat_desc: "Diğer PNGTuber çözümlerinden farklı olarak, Flood Tuber doğrudan OBS'in içinde çalışır. Ekstra pencere, ekstra program yok.",
@@ -1487,11 +2270,12 @@
         feat6_desc: "Shake, Bounce veya None hareket modları. Tek tuşla avatarı yatay aynalayın.",
         howto_label: "Kurulum",
         howto_title: "Nasıl Kurulur & Kullanılır?",
-        howto_desc: "İki farklı kurulum yöntemi sunuyoruz. Kendinize uygun olanı seçin.",
+        howto_desc: "Windows, macOS ve Linux için kurulum yöntemleri sunuyoruz. Kendinize uygun olanı seçin.",
         howto_compat_title: "OBS Studio 33.0.0+ Uyumluluk Uyarısı",
-        howto_compat_desc: 'Güncel sürüm (v1.2.0) ve aşağıdaki kurulum adımları <strong>OBS Studio 33.0.0 ve üzeri</strong> için hazırlanmıştır. OBS Studio 32 ve daha eski sürümleri kullanıyorsanız lütfen <a href="https://github.com/justflood/flood-tuber/releases/tag/v1.1.0" target="_blank" rel="noopener noreferrer">Flood Tuber v1.1.0 (GitHub)</a> sürümünü kullanın.',
+        howto_compat_desc: 'Güncel sürüm (<span class="ft-stable-version">v1.2.0</span>) ve aşağıdaki kurulum adımları <strong>OBS Studio 33.0.0 ve üzeri</strong> için hazırlanmıştır. OBS Studio 32 ve daha eski sürümleri kullanıyorsanız lütfen <a href="#release-v1-1-0" onclick="scrollToRelease(\'v1.1.0\', event)">Flood Tuber v1.1.0 (Eski Sürüm)</a> paketini indirin.',
         tab_installer: "Installer (Kolay)",
         tab_portable: "Portable (Manuel)",
+        tab_unix: "macOS & Linux",
         ins1_title: "Installer'ı İndirin",
         ins1_desc: 'Yukarıdaki <strong>"Installer İndir"</strong> butonuna tıklayın. <code>FloodTuber-Installer-<span class="ft-ins-version">1.2.0</span>.exe</code> dosyası inecektir.',
         ins2_title: "Installer'ı Çalıştırın",
@@ -1506,6 +2290,19 @@
         port2_desc: 'ZIP içindeki <code>flood-tuber</code> klasörünü doğrudan şu dizine çıkartın:<br><code>C:\\ProgramData\\obs-studio\\plugins\\</code>',
         port3_title: "OBS Studio'yu Yeniden Başlatın",
         port3_desc: 'OBS\'i kapatıp tekrar açın. Kaynaklar panelinde <strong>"Flood Tuber Avatar"</strong> artık görünecektir.',
+        unix1_title: "macOS Kurulumu (Intel & Apple Silicon)",
+        unix1_desc: '<code>macos-universal.pkg</code> kurulum dosyasını indirip çalıştırarak otomatik kurun veya <code>.tar.xz</code> arşivini şu dizine çıkartın:<br><code>~/Library/Application Support/obs-studio/plugins/</code>',
+        unix2_title: "Linux Kurulumu (Ubuntu / Debian x86_64)",
+        unix2_desc: '<code>.deb</code> paketini indirin ve terminal üzerinden kurun:<br><code>sudo apt install ./flood-tuber-*-x86_64-linux-gnu.deb</code><br>Veya <code>.tar.xz</code> arşivini <code>~/.config/obs-studio/plugins/</code> dizinine çıkartın.',
+        unix3_title: "OBS Studio'yu Yeniden Başlatın",
+        unix3_desc: 'OBS Studio\'yu yeniden başlatın, Kaynaklar panelinden <strong>"+"</strong> butonuna tıklayıp <strong>"Flood Tuber Avatar"</strong> kaynağını ekleyin.',
+        rel_label: "Sürümler & Değişiklik Günlüğü",
+        rel_title: "Tüm Sürümler ve Sürüm Notları",
+        rel_desc: "Tüm kararlı ve beta sürümleri inceleyin, detaylı güncelleme notlarını okuyun ve Windows, macOS ve Linux paketlerini GitHub'a gitmeden doğrudan buradan indirin.",
+        rel_filter_all: "Tüm Sürümler",
+        rel_filter_stable: "Kararlı (Stable)",
+        rel_filter_beta: "Beta / Ön Sürüm",
+        rel_jump_label: "Sürüme git:",
         trust_label: "Güvenlik",
         trust_title: "Güvenli & Açık Kaynak",
         trust_desc: "Flood Tuber tamamen açık kaynak kodludur. Kaynak kodunu inceleyebilir, kendiniz derleyebilirsiniz.",
@@ -1536,7 +2333,53 @@
       }
     };
 
+    const relI18n = {
+      en: {
+        badge_latest_stable: "Latest Stable",
+        badge_stable: "Stable",
+        badge_beta: "Pre-Release / Beta",
+        badge_obs33: "OBS 33.0.0+",
+        badge_obs32: "OBS ≤ 32.x Legacy",
+        direct_downloads: "Direct Downloads",
+        files_count: "files",
+        show_notes: "Show Release Notes & Changelog",
+        hide_notes: "Hide Release Notes",
+        win_installer: "Windows Installer (.exe)",
+        win_portable: "Windows Portable (.zip)",
+        macos_pkg: "macOS Universal (.pkg)",
+        linux_deb: "Linux Ubuntu/Debian (.deb)",
+        linux_ddeb: "Linux Debug Symbols (.ddeb)",
+        source_archive: "Source Archive (.tar.xz)",
+        other_asset: "Download Package",
+        view_on_gh: "GitHub"
+      },
+      tr: {
+        badge_latest_stable: "Güncel Kararlı",
+        badge_stable: "Kararlı Sürüm",
+        badge_beta: "Ön Sürüm / Beta",
+        badge_obs33: "OBS 33.0.0+",
+        badge_obs32: "OBS ≤ 32.x Uyumlu",
+        direct_downloads: "Doğrudan İndirme Dosyaları",
+        files_count: "dosya",
+        show_notes: "Sürüm Notlarını ve Değişiklikleri Göster",
+        hide_notes: "Sürüm Notlarını Gizle",
+        win_installer: "Windows Kurulum (.exe)",
+        win_portable: "Windows Portable (.zip)",
+        macos_pkg: "macOS Universal (.pkg)",
+        linux_deb: "Linux Ubuntu/Debian (.deb)",
+        linux_ddeb: "Linux Hata Ayıklama (.ddeb)",
+        source_archive: "Kaynak Arşivi (.tar.xz)",
+        other_asset: "Paketi İndir",
+        view_on_gh: "GitHub"
+      }
+    };
+
     let currentLang = 'en';
+    let currentReleaseFilter = 'all';
+    let counterAnimated = false;
+    window.ftReleaseState = null;
+    window.currentPrereleaseTag = null;
+
     const langSwitchBtn = document.getElementById('lang-switch');
 
     function toggleLanguage() {
@@ -1550,9 +2393,8 @@
         }
       });
 
-      // Re-apply dynamic version info if data is already fetched
-      if (typeof updateReleaseInfo === 'function') {
-        updateReleaseInfo();
+      if (window.ftReleaseState) {
+        applyReleaseState(window.ftReleaseState, false);
       }
     }
 
@@ -1586,19 +2428,27 @@
     }
 
     // Tab switching for installation steps
-    function switchTab(tab) {
+    function switchTab(tab, ev) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.step-tab').forEach(el => el.classList.remove('active'));
-      document.getElementById('tab-' + tab).classList.add('active');
-      event.currentTarget.classList.add('active');
+      const targetTab = document.getElementById('tab-' + tab);
+      if (targetTab) targetTab.classList.add('active');
+      const trigger = (ev && ev.currentTarget) ? ev.currentTarget : (typeof event !== 'undefined' && event ? event.currentTarget : null);
+      if (trigger) trigger.classList.add('active');
     }
 
     function animateCounter(target) {
+      const el = document.getElementById('download-count');
+      if (!el) return;
       if (!target || target <= 0) {
-        document.getElementById('download-count').innerText = '—';
+        el.innerText = '—';
         return;
       }
-      const el = document.getElementById('download-count');
+      if (counterAnimated) {
+        el.innerText = target.toLocaleString();
+        return;
+      }
+      counterAnimated = true;
       let count = 0;
       const increment = Math.ceil(target / 40);
       const timer = setInterval(() => {
@@ -1611,36 +2461,565 @@
       }, 25);
     }
 
-    async function updateReleaseInfo() {
-      try {
-        const res = await fetch('../stats.json');
-        if (!res.ok) return;
-        const data = await res.json();
+    function extractPlatformUrls(assets) {
+      const urls = {
+        installer_url: '',
+        portable_url: '',
+        macos_url: '',
+        linux_deb_url: '',
+        source_url: ''
+      };
+      (assets || []).forEach(a => {
+        const name = (a.name || '').toLowerCase();
+        const url = a.browser_download_url || '';
+        if (name.includes('installer') && name.endsWith('.exe')) {
+          urls.installer_url = url;
+        } else if (name.includes('portable') && name.endsWith('.zip')) {
+          urls.portable_url = url;
+        } else if (name.endsWith('.pkg') || (name.includes('macos') && !name.endsWith('.ddeb'))) {
+          if (!urls.macos_url || name.endsWith('.pkg')) urls.macos_url = url;
+        } else if (name.endsWith('.deb') && !name.includes('dbgsym')) {
+          urls.linux_deb_url = url;
+        } else if (name.includes('source') || name.endsWith('.tar.xz') || name.endsWith('.tar.gz')) {
+          urls.source_url = url;
+        }
+      });
+      return urls;
+    }
 
-        const elements = {
-          'ft-main-version': 'innerText',
-          'dl-installer': 'href',
-          'dl-portable': 'href'
+    function normalizeReleasesArray(rawList) {
+      const cleaned = [];
+      let latestStable = null;
+      let latestPrerelease = null;
+
+      (rawList || []).forEach(r => {
+        if (r.draft) return;
+        const assets = (r.assets || []).map(a => ({
+          name: a.name || '',
+          size: a.size || 0,
+          download_count: a.download_count || 0,
+          browser_download_url: a.browser_download_url || ''
+        }));
+        const pUrls = extractPlatformUrls(assets);
+        const obj = {
+          tag_name: r.tag_name || '',
+          name: r.name || r.tag_name || '',
+          prerelease: Boolean(r.prerelease),
+          published_at: r.published_at || '',
+          html_url: r.html_url || ('https://github.com/justflood/flood-tuber/releases/tag/' + (r.tag_name || '')),
+          body: r.body || '',
+          assets: assets,
+          installer_url: r.installer_url || pUrls.installer_url,
+          portable_url: r.portable_url || pUrls.portable_url,
+          macos_url: r.macos_url || pUrls.macos_url,
+          linux_deb_url: r.linux_deb_url || pUrls.linux_deb_url,
+          source_url: r.source_url || pUrls.source_url
         };
+        cleaned.push(obj);
+        if (!obj.prerelease && !latestStable) {
+          latestStable = obj;
+        } else if (obj.prerelease && !latestPrerelease && !latestStable) {
+          latestPrerelease = obj;
+        }
+      });
 
-        for (const [id, prop] of Object.entries(elements)) {
-          const el = document.getElementById(id);
-          if (el) {
-            if (id === 'ft-main-version') el.innerText = data.latest_version;
-            if (id === 'dl-installer') el.href = data.installer_url;
-            if (id === 'dl-portable') el.href = data.portable_url;
-          }
+      if (!latestStable && cleaned.length > 0) {
+        latestStable = cleaned[0];
+      }
+
+      return { releases: cleaned, latestStable, latestPrerelease };
+    }
+
+    function formatFileSize(bytes) {
+      if (!bytes || bytes <= 0) return '';
+      if (bytes >= 1048576) return (bytes / 1048576).toFixed(2) + ' MB';
+      return Math.round(bytes / 1024) + ' KB';
+    }
+
+    function formatReleaseDate(isoStr) {
+      if (!isoStr) return '';
+      try {
+        const d = new Date(isoStr);
+        return d.toLocaleDateString(currentLang === 'tr' ? 'tr-TR' : 'en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+      } catch (e) {
+        return isoStr.split('T')[0];
+      }
+    }
+
+    function classifyAsset(assetName) {
+      const low = (assetName || '').toLowerCase();
+      const t = relI18n[currentLang] || relI18n.en;
+      if (low.includes('installer') && low.endsWith('.exe')) {
+        return { icon: 'fab fa-windows', cls: 'win', title: t.win_installer, recommended: true, order: 1 };
+      }
+      if (low.includes('portable') && low.endsWith('.zip')) {
+        return { icon: 'fas fa-file-zipper', cls: 'win', title: t.win_portable, recommended: false, order: 2 };
+      }
+      if (low.endsWith('.pkg') || low.includes('macos')) {
+        return { icon: 'fab fa-apple', cls: 'macos', title: t.macos_pkg, recommended: false, order: 3 };
+      }
+      if (low.endsWith('.deb') && !low.includes('dbgsym')) {
+        return { icon: 'fab fa-linux', cls: 'linux', title: t.linux_deb, recommended: false, order: 4 };
+      }
+      if (low.endsWith('.ddeb') || low.includes('dbgsym')) {
+        return { icon: 'fas fa-bug', cls: 'linux', title: t.linux_ddeb, recommended: false, order: 5 };
+      }
+      if (low.includes('source') || low.endsWith('.tar.xz') || low.endsWith('.tar.gz')) {
+        return { icon: 'fas fa-file-code', cls: 'source', title: t.source_archive, recommended: false, order: 6 };
+      }
+      return { icon: 'fas fa-box', cls: 'win', title: t.other_asset, recommended: false, order: 7 };
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function formatInlineMarkdown(line) {
+      let s = escapeHtml(line);
+      // Badge image links: [![alt](img)](url)
+      s = s.replace(/\[!\[([^\]]*)\]\((https?:\/\/[^)]+)\)\]\((https?:\/\/[^)]+)\)/g, '<a href="$3" target="_blank" rel="noopener noreferrer">$1</a>');
+      // Standard links: [text](url)
+      s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      // Inline code: `code`
+      s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+      // Bold: **text**
+      s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      // Italic: *text*
+      s = s.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, '$1<em>$2</em>');
+      // Issue / PR references like (#15)
+      s = s.replace(/#(\d+)\b/g, '<a href="https://github.com/justflood/flood-tuber/pull/$1" target="_blank" rel="noopener noreferrer">#$1</a>');
+      return s;
+    }
+
+    function renderReleaseMarkdown(md) {
+      if (!md) return '';
+      const lines = md.replace(/\r\n/g, '\n').split('\n');
+      let html = '';
+      let inList = false;
+      let listType = 'ul';
+      let inBlockquote = false;
+
+      const closeList = () => {
+        if (inList) {
+          html += `</${listType}>`;
+          inList = false;
+        }
+      };
+      const closeQuote = () => {
+        if (inBlockquote) {
+          html += '</blockquote>';
+          inBlockquote = false;
+        }
+      };
+
+      for (let i = 0; i < lines.length; i++) {
+        const raw = lines[i];
+        const trimmed = raw.trim();
+
+        if (!trimmed) {
+          closeList();
+          closeQuote();
+          continue;
         }
 
+        if (/^---+$/.test(trimmed)) {
+          closeList();
+          closeQuote();
+          html += '<hr>';
+          continue;
+        }
+
+        if (trimmed.startsWith('>')) {
+          closeList();
+          if (!inBlockquote) {
+            html += '<blockquote>';
+            inBlockquote = true;
+          }
+          const qText = trimmed.replace(/^>\s*/, '');
+          if (qText) html += `<p>${formatInlineMarkdown(qText)}</p>`;
+          continue;
+        } else {
+          closeQuote();
+        }
+
+        const headingMatch = trimmed.match(/^(#{1,4})\s+(.*)$/);
+        if (headingMatch) {
+          closeList();
+          const level = Math.min(headingMatch[1].length + 1, 4);
+          html += `<h${level}>${formatInlineMarkdown(headingMatch[2])}</h${level}>`;
+          continue;
+        }
+
+        const ulMatch = trimmed.match(/^[*+-]\s+(.*)$/);
+        if (ulMatch) {
+          if (!inList || listType !== 'ul') {
+            closeList();
+            html += '<ul>';
+            inList = true;
+            listType = 'ul';
+          }
+          html += `<li>${formatInlineMarkdown(ulMatch[1])}</li>`;
+          continue;
+        }
+
+        const olMatch = trimmed.match(/^\d+\.\s+(.*)$/);
+        if (olMatch) {
+          if (!inList || listType !== 'ol') {
+            closeList();
+            html += '<ol>';
+            inList = true;
+            listType = 'ol';
+          }
+          html += `<li>${formatInlineMarkdown(olMatch[1])}</li>`;
+          continue;
+        }
+
+        closeList();
+        html += `<p>${formatInlineMarkdown(trimmed)}</p>`;
+      }
+
+      closeList();
+      closeQuote();
+      return html;
+    }
+
+    function sanitizeTagId(tag) {
+      return 'release-' + String(tag || '').replace(/[^a-zA-Z0-9_-]/g, '-');
+    }
+
+    function toggleReleaseNotes(btn) {
+      if (!btn) return;
+      const body = btn.nextElementSibling;
+      if (!body) return;
+      const isOpen = body.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      const labelSpan = btn.querySelector('.notes-btn-text');
+      const t = relI18n[currentLang] || relI18n.en;
+      if (labelSpan) {
+        labelSpan.textContent = isOpen ? t.hide_notes : t.show_notes;
+      }
+    }
+
+    function filterReleases(filterType, btnEl) {
+      currentReleaseFilter = filterType;
+      document.querySelectorAll('.release-filter-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-filter') === filterType);
+      });
+      if (btnEl) btnEl.classList.add('active');
+      if (window.ftReleaseState) {
+        renderReleasesSection(window.ftReleaseState);
+      }
+    }
+
+    function scrollToRelease(tag, ev) {
+      if (ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+      if (!tag) return;
+
+      // Ensure filter allows this release to be visible
+      if (currentReleaseFilter !== 'all') {
+        filterReleases('all', document.querySelector('.release-filter-btn[data-filter="all"]'));
+      }
+
+      const cardId = sanitizeTagId(tag);
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.remove('pulse-focus');
+        void card.offsetWidth;
+        card.classList.add('pulse-focus');
+
+        // Expand release notes if closed
+        const notesBody = card.querySelector('.release-notes-body');
+        const notesBtn = card.querySelector('.release-notes-toggle');
+        if (notesBody && !notesBody.classList.contains('open')) {
+          toggleReleaseNotes(notesBtn);
+        }
+      } else {
+        const sec = document.getElementById('releases');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function onSelectReleaseJump(tag) {
+      if (!tag) return;
+      scrollToRelease(tag, null);
+    }
+
+    function renderReleasesSection(state) {
+      const container = document.getElementById('releases-list');
+      const jumpSelect = document.getElementById('release-jump-select');
+      if (!container) return;
+
+      const t = relI18n[currentLang] || relI18n.en;
+      const allReleases = state.releases || [];
+      const latestStableTag = state.latestStable ? state.latestStable.tag_name : '';
+
+      // Populate Quick Jump Dropdown
+      if (jumpSelect) {
+        jumpSelect.innerHTML = allReleases.map(r => {
+          let suffix = '';
+          if (r.tag_name === latestStableTag) suffix = ` (${t.badge_latest_stable})`;
+          else if (r.prerelease) suffix = ' (Beta)';
+          else if (r.tag_name === 'v1.1.0') suffix = ' (OBS ≤ 32.x)';
+          return `<option value="${escapeHtml(r.tag_name)}">${escapeHtml(r.tag_name)}${escapeHtml(suffix)}</option>`;
+        }).join('');
+      }
+
+      const filtered = allReleases.filter(r => {
+        if (currentReleaseFilter === 'stable') return !r.prerelease;
+        if (currentReleaseFilter === 'beta') return r.prerelease;
+        return true;
+      });
+
+      container.innerHTML = filtered.map((r, idx) => {
+        const isLatestStable = (r.tag_name === latestStableTag);
+        const isPre = Boolean(r.prerelease);
+        const isLegacy110 = (r.tag_name === 'v1.1.0');
+        const isObs33Plus = !['v1.1.0', 'v1.0.2', 'v0.2.0', 'v0.1.0'].includes(r.tag_name);
+
+        let cardCls = 'release-card';
+        if (isLatestStable) cardCls += ' is-stable';
+        else if (isPre) cardCls += ' is-prerelease';
+        else if (isLegacy110) cardCls += ' is-legacy-highlight';
+
+        let badgesHtml = '';
+        if (isLatestStable) {
+          badgesHtml += `<span class="rel-badge stable"><i class="fas fa-check-circle"></i> ${t.badge_latest_stable}</span>`;
+        } else if (isPre) {
+          badgesHtml += `<span class="rel-badge beta"><i class="fas fa-flask"></i> ${t.badge_beta}</span>`;
+        } else {
+          badgesHtml += `<span class="rel-badge stable" style="opacity:0.75;">${t.badge_stable}</span>`;
+        }
+
+        if (isLegacy110) {
+          badgesHtml += `<span class="rel-badge legacy"><i class="fas fa-clock-rotate-left"></i> ${t.badge_obs32}</span>`;
+        } else if (isObs33Plus) {
+          badgesHtml += `<span class="rel-badge obs33"><i class="fas fa-plug"></i> ${t.badge_obs33}</span>`;
+        }
+
+        const sortedAssets = [...(r.assets || [])].sort((a, b) => {
+          return classifyAsset(a.name).order - classifyAsset(b.name).order;
+        });
+
+        const assetsHtml = sortedAssets.map(a => {
+          const meta = classifyAsset(a.name);
+          const sizeStr = formatFileSize(a.size);
+          return `
+            <a href="${escapeHtml(a.browser_download_url)}" class="asset-dl-card ${meta.recommended ? 'recommended' : ''}">
+              <div class="asset-dl-left">
+                <div class="asset-os-icon ${meta.cls}">
+                  <i class="${meta.icon}"></i>
+                </div>
+                <div class="asset-info">
+                  <div class="asset-platform-title">${escapeHtml(meta.title)}</div>
+                  <div class="asset-filename" title="${escapeHtml(a.name)}">${escapeHtml(a.name)}</div>
+                </div>
+              </div>
+              <div class="asset-dl-right">
+                ${sizeStr ? `<span class="asset-size">${escapeHtml(sizeStr)}</span>` : ''}
+                <i class="fas fa-download asset-dl-icon"></i>
+              </div>
+            </a>
+          `;
+        }).join('');
+
+        // Open notes by default for the first 2 cards (e.g., latest beta & latest stable)
+        const defaultOpen = idx < 2;
+        const notesHtml = renderReleaseMarkdown(r.body);
+        const showTitle = r.name && r.name !== r.tag_name;
+
+        return `
+          <div id="${sanitizeTagId(r.tag_name)}" class="${cardCls}">
+            <div class="release-card-header">
+              <div class="release-header-left">
+                <div class="release-badges-row">
+                  <span class="release-version-pill">${escapeHtml(r.tag_name)}</span>
+                  ${badgesHtml}
+                </div>
+                ${showTitle ? `<div class="release-title-text">${escapeHtml(r.name)}</div>` : ''}
+              </div>
+              <div class="release-header-right">
+                <span><i class="far fa-calendar-alt"></i> ${escapeHtml(formatReleaseDate(r.published_at))}</span>
+                <span><i class="fas fa-box-open"></i> ${sortedAssets.length} ${t.files_count}</span>
+                <a href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener noreferrer" class="release-gh-ext">
+                  <i class="fab fa-github"></i> ${t.view_on_gh}
+                </a>
+              </div>
+            </div>
+
+            <div class="release-assets-label">
+              <i class="fas fa-download"></i> ${t.direct_downloads}
+            </div>
+            <div class="release-assets-grid">
+              ${assetsHtml}
+            </div>
+
+            ${notesHtml ? `
+              <button type="button" class="release-notes-toggle ${defaultOpen ? 'open' : ''}" onclick="toggleReleaseNotes(this)">
+                <span><i class="fas fa-list-check" style="margin-right: 8px; color: var(--accent);"></i> <span class="notes-btn-text">${defaultOpen ? t.hide_notes : t.show_notes}</span></span>
+                <i class="fas fa-chevron-down chevron"></i>
+              </button>
+              <div class="release-notes-body release-markdown ${defaultOpen ? 'open' : ''}">
+                ${notesHtml}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function applyReleaseState(state, shouldAnimateDownloads = true) {
+      if (!state) return;
+      window.ftReleaseState = state;
+
+      const stable = state.latestStable;
+      const pre = state.latestPrerelease;
+
+      if (stable) {
+        const stableVer = stable.tag_name || 'v1.2.0';
+        const mainVerEl = document.getElementById('ft-main-version');
+        if (mainVerEl) {
+          mainVerEl.innerText = pre ? `${stableVer} (${pre.tag_name})` : stableVer;
+        }
+
+        // Update all .ft-stable-version elements (Compatibility Banner, Howto Notice, etc.)
+        document.querySelectorAll('.ft-stable-version').forEach(el => {
+          el.innerText = stableVer;
+        });
+
         // Update installer version in instructions (strip 'v')
-        const insVersion = data.latest_version.startsWith('v') ? data.latest_version.substring(1) : data.latest_version;
+        const insVersion = stableVer.startsWith('v') ? stableVer.substring(1) : stableVer;
         document.querySelectorAll('.ft-ins-version').forEach(el => {
           el.innerText = insVersion;
         });
 
-        animateCounter(data.obs_forum_downloads);
-      } catch (e) {
-        console.error('Release info update error:', e);
+        // Update main stable download buttons
+        const dlIns = document.getElementById('dl-installer');
+        const dlPort = document.getElementById('dl-portable');
+        const dlMac = document.getElementById('dl-macos');
+        const dlLin = document.getElementById('dl-linux');
+
+        if (dlIns && stable.installer_url) dlIns.href = stable.installer_url;
+        if (dlPort && stable.portable_url) dlPort.href = stable.portable_url;
+
+        if (dlMac) {
+          if (stable.macos_url) {
+            dlMac.href = stable.macos_url;
+            dlMac.style.display = 'inline-flex';
+          } else {
+            dlMac.style.display = 'none';
+          }
+        }
+        if (dlLin) {
+          if (stable.linux_deb_url) {
+            dlLin.href = stable.linux_deb_url;
+            dlLin.style.display = 'inline-flex';
+          } else {
+            dlLin.style.display = 'none';
+          }
+        }
+      }
+
+      // Pre-release / Beta Box (Option A)
+      const preCard = document.getElementById('prerelease-card');
+      const compatPreTag = document.getElementById('compat-prerelease-tag');
+      if (pre && pre.tag_name) {
+        window.currentPrereleaseTag = pre.tag_name;
+        if (preCard) preCard.style.display = 'block';
+        if (compatPreTag) {
+          compatPreTag.innerText = pre.tag_name + ' (Beta)';
+          compatPreTag.style.display = 'inline-flex';
+        }
+        const preVerTag = document.getElementById('pre-version-tag');
+        if (preVerTag) preVerTag.innerText = pre.tag_name;
+
+        const mapPreBtn = (id, url) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (url) {
+            el.href = url;
+            el.style.display = 'inline-flex';
+          } else {
+            el.style.display = 'none';
+          }
+        };
+        mapPreBtn('pre-dl-installer', pre.installer_url);
+        mapPreBtn('pre-dl-portable', pre.portable_url);
+        mapPreBtn('pre-dl-macos', pre.macos_url);
+        mapPreBtn('pre-dl-linux', pre.linux_deb_url);
+      } else {
+        window.currentPrereleaseTag = null;
+        if (preCard) preCard.style.display = 'none';
+        if (compatPreTag) compatPreTag.style.display = 'none';
+      }
+
+      if (shouldAnimateDownloads && state.obsForumDownloads) {
+        animateCounter(state.obsForumDownloads);
+      }
+
+      renderReleasesSection(state);
+    }
+
+    async function updateReleaseInfo() {
+      let statsData = null;
+      let liveReleases = null;
+
+      // 1. Fetch stats.json (for OBS Forum download count + cached releases fallback)
+      const statsPromise = fetch('../stats.json')
+        .then(r => (r.ok ? r.json() : null))
+        .catch(() => null);
+
+      // 2. Fetch live GitHub Releases API (for instant 0-delay updates when a new release/beta drops)
+      const ghPromise = fetch('https://api.github.com/repos/justflood/flood-tuber/releases?per_page=30', {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      })
+        .then(r => (r.ok ? r.json() : null))
+        .catch(() => null);
+
+      [statsData, liveReleases] = await Promise.all([statsPromise, ghPromise]);
+
+      const obsForumDownloads = statsData ? statsData.obs_forum_downloads : 0;
+
+      if (Array.isArray(liveReleases) && liveReleases.length > 0) {
+        const parsed = normalizeReleasesArray(liveReleases);
+        applyReleaseState({
+          obsForumDownloads,
+          releases: parsed.releases,
+          latestStable: parsed.latestStable,
+          latestPrerelease: parsed.latestPrerelease
+        }, true);
+      } else if (statsData) {
+        if (Array.isArray(statsData.releases) && statsData.releases.length > 0) {
+          const parsed = normalizeReleasesArray(statsData.releases);
+          applyReleaseState({
+            obsForumDownloads,
+            releases: parsed.releases,
+            latestStable: parsed.latestStable,
+            latestPrerelease: parsed.latestPrerelease
+          }, true);
+        } else {
+          // Legacy stats.json fallback
+          applyReleaseState({
+            obsForumDownloads,
+            releases: [],
+            latestStable: {
+              tag_name: statsData.latest_version || 'v1.2.0',
+              installer_url: statsData.installer_url || '',
+              portable_url: statsData.portable_url || '',
+              macos_url: statsData.macos_url || '',
+              linux_deb_url: statsData.linux_deb_url || ''
+            },
+            latestPrerelease: statsData.latest_prerelease || null
+          }, true);
+        }
       }
     }
 

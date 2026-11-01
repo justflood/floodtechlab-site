@@ -231,6 +231,11 @@ async function updateReleaseInfo() {
     if (!res.ok) return;
     const data = await res.json();
 
+    let displayVersion = data.latest_version || 'v1.2.0';
+    if (data.latest_prerelease && data.latest_prerelease.tag_name) {
+      displayVersion = displayVersion + ' (' + data.latest_prerelease.tag_name + ')';
+    }
+
     // Update Elements
     const elements = {
       'ft-main-version': 'innerText',
@@ -242,9 +247,9 @@ async function updateReleaseInfo() {
     for (const [id, prop] of Object.entries(elements)) {
       const el = document.getElementById(id);
       if (el) {
-        if (id === 'ft-main-version' || id === 'ft-strip-version') el.innerText = data.latest_version;
-        if (id === 'dl-installer') el.href = data.installer_url;
-        if (id === 'dl-portable') el.href = data.portable_url;
+        if (id === 'ft-main-version' || id === 'ft-strip-version') el.innerText = displayVersion;
+        if (id === 'dl-installer' && data.installer_url) el.href = data.installer_url;
+        if (id === 'dl-portable' && data.portable_url) el.href = data.portable_url;
       }
     }
 
