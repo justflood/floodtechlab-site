@@ -1,5 +1,5 @@
 {
-  "obs_forum_downloads": 15142,
+  "obs_forum_downloads": 15160,
   "latest_version": "v1.2.0",
   "installer_url": "https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Installer-1.2.0.exe",
   "portable_url": "https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Portable-v1.2.0.zip",
@@ -53,7 +53,7 @@
         {
           "name": "FloodTuber-Installer-1.3.0.exe",
           "size": 15402353,
-          "download_count": 34,
+          "download_count": 41,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0-beta1/FloodTuber-Installer-1.3.0.exe"
         },
         {
@@ -80,13 +80,13 @@
         {
           "name": "FloodTuber-Installer-1.2.0.exe",
           "size": 15399413,
-          "download_count": 769,
+          "download_count": 789,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Installer-1.2.0.exe"
         },
         {
           "name": "FloodTuber-Portable-v1.2.0.zip",
           "size": 12864885,
-          "download_count": 180,
+          "download_count": 181,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.2.0/FloodTuber-Portable-v1.2.0.zip"
         }
       ],
@@ -107,7 +107,7 @@
         {
           "name": "FloodTuber-Installer-1.1.0.exe",
           "size": 15260638,
-          "download_count": 8094,
+          "download_count": 8095,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.1.0/FloodTuber-Installer-1.1.0.exe"
         },
         {
@@ -205,5 +205,5 @@
       "source_url": ""
     }
   ],
-  "last_updated": "2026-11-05T01:20:41Z"
+  "last_updated": "2026-11-05T08:01:06Z"
 }
