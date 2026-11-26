@@ -1,5 +1,5 @@
 {
-  "obs_forum_downloads": 17179,
+  "obs_forum_downloads": 17215,
   "latest_version": "v1.3.0",
   "installer_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0/FloodTuber-Installer-1.3.0.exe",
   "portable_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0/FloodTuber-Portable-v1.3.0.zip",
@@ -19,7 +19,7 @@
         {
           "name": "flood-tuber-1.3.0-macos-universal.pkg",
           "size": 14099606,
-          "download_count": 44,
+          "download_count": 45,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0/flood-tuber-1.3.0-macos-universal.pkg"
         },
         {
@@ -37,19 +37,19 @@
         {
           "name": "flood-tuber-1.3.0-x86_64-linux-gnu.deb",
           "size": 13042506,
-          "download_count": 52,
+          "download_count": 54,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0/flood-tuber-1.3.0-x86_64-linux-gnu.deb"
         },
         {
           "name": "FloodTuber-Installer-1.3.0.exe",
           "size": 15403198,
-          "download_count": 1173,
+          "download_count": 1193,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0/FloodTuber-Installer-1.3.0.exe"
         },
         {
           "name": "FloodTuber-Portable-v1.3.0.zip",
           "size": 12869058,
-          "download_count": 255,
+          "download_count": 260,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.3.0/FloodTuber-Portable-v1.3.0.zip"
         }
       ],
@@ -148,7 +148,7 @@
         {
           "name": "FloodTuber-Installer-1.1.0.exe",
           "size": 15260638,
-          "download_count": 8254,
+          "download_count": 8255,
           "browser_download_url": "https://github.com/justflood/flood-tuber/releases/download/v1.1.0/FloodTuber-Installer-1.1.0.exe"
         },
         {
@@ -246,5 +246,5 @@
       "source_url": ""
     }
   ],
-  "last_updated": "2026-11-25T20:17:27Z"
+  "last_updated": "2026-11-26T02:56:47Z"
 }
